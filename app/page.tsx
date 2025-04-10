@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { attractions } from "@/data/attractiondata";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -23,7 +25,7 @@ export default function Home() {
               size="lg"
               className="bg-emerald-500 hover:bg-emerald-600 text-white border-0 rounded-full px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
-              <Link href="/explore">Explore Tirthan Valley</Link>
+              <Link href="/explore/about">Explore Tirthan Valley</Link>
             </Button>
             <Button
               asChild
@@ -128,44 +130,52 @@ export default function Home() {
                 Valley
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-              {attractions.map((attraction, index) => (
-                <div
-                  key={index}
-                  className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover-lift group"
-                >
-                  <div className="relative h-[220px] overflow-hidden">
-                    <Image
-                      src={attraction.image || "/placeholder.svg"}
-                      alt={attraction.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
-                    <div className="absolute bottom-0 left-0 p-6 text-white">
-                      <div className="flex items-center gap-2 mb-2">
-                        <MapPin className="h-5 w-5 text-emerald-400" />
-                        <h3 className="text-xl font-bold">
-                          {attraction.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-                      {attraction.description}
-                    </p>
-                    <Link
-                      href={`/explore/attractions/${attraction.slug}`}
-                      className="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium group"
-                    >
-                      Discover more
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+
+            {/* check */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                       {attractions.slice(0,3).map((attraction, index) => (
+                         <Link
+                           key={index}
+                           href={`/explore/attractions/${attraction.slug}`}
+                           className="block"
+                         >
+                           <Card className="overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-300 group h-full">
+                             <div className="relative h-[220px] overflow-hidden">
+                               <Image
+                                 src={attraction.heroimage || "/placeholder.svg"}
+                                 alt={attraction.title}
+                                 fill
+                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
+                               />
+                               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                             </div>
+                             <CardHeader className="pb-2">
+                               <CardTitle  className="flex items-center gap-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                                 <MapPin className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                                 {attraction.title}
+                               </CardTitle>
+                               <div className="text-sm text-gray-600 dark:text-gray-400">
+                                 {attraction.location}
+                               </div>
+                             </CardHeader>
+                             <CardContent>
+                               <CardDescription  className="line-clamp-3">
+                                 {attraction.description}
+                               </CardDescription>
+                             </CardContent>
+                             <CardFooter className="pt-0">
+                               <div className="w-full group">
+                                 <div className="flex items-center justify-center gap-2 text-sm font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                                   Discover more
+                                   <ArrowRight className="h-4 w-4" />
+                                 </div>
+                               </div>
+                             </CardFooter>
+                           </Card>
+                         </Link>
+                       ))}
+                     </div>
+                   
           </div>
         </div>
       </section>
@@ -375,29 +385,7 @@ export default function Home() {
   );
 }
 
-const attractions = [
-  {
-    title: "Great Himalayan National Park",
-    slug: "great-himalayan-national-park",
-    image: "/images/ghnp.jpg",
-    description:
-      "A UNESCO World Heritage Site known for its rich biodiversity, alpine meadows, and pristine forests. Home to numerous endangered species including the snow leopard and Himalayan brown bear.",
-  },
-  {
-    title: "Jalori Pass",
-    slug: "jalori-pass",
-    image: "/images/jalori.jpg",
-    description:
-      "One of the lowest mountain passes in the Himalayas at an altitude of 3,120 meters, offering breathtaking views and trekking opportunities to Serolsar Lake and Raghupur Fort.",
-  },
-  {
-    title: "Serolsar Lake",
-    slug: "serolsar-lake",
-    image: "/images/serolsar.jpeg",
-    description:
-      "A serene high-altitude lake surrounded by dense forests, believed to have mystical properties. Located about 5 km from Jalori Pass, it's a popular trekking destination.",
-  },
-];
+
 
 const activities = [
   {
