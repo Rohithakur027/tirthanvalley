@@ -181,7 +181,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="border-l border-gray-200 dark:border-gray-800"
+              className="border-l border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950"
             >
               <div className="flex items-center justify-between mb-8">
                 <Link
