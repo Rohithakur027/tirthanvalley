@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { attractions } from "@/data/attractiondata";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-
+import { activities } from "@/data/activitydata";
+import { testimonials } from "@/data/testimonialData";
+import { blogPosts } from "@/data/blogData";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -72,7 +74,7 @@ export default function Home() {
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl hover-lift">
                 <Image
-                  src="/images/main.jpg"
+                  src="/images/main.webp"
                   alt="Tirthan Valley Landscape"
                   width={550}
                   height={400}
@@ -194,14 +196,14 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-              {activities.map((activity, index) => (
+              {activities.slice(0,4).map((activity, index) => (
                 <div
                   key={index}
                   className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover-lift group"
                 >
                   <div className="relative h-[200px] overflow-hidden">
                     <Image
-                      src={activity.image || "/placeholder.svg"}
+                      src={activity.heroimage || "/placeholder.svg"}
                       alt={activity.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -387,81 +389,8 @@ export default function Home() {
 
 
 
-const activities = [
-  {
-    title: "Trekking",
-    slug: "trekking",
-    image: "/images/activity-trekking.jpg",
-    description: "Explore the untouched trails of the Himalayas.",
-  },
-  {
-    title: "Fishing",
-    slug: "fishing",
-    image: "/images/fishing.jpg",
-    description:
-      "Catch trout in the crystal-clear waters of the Tirthan River.",
-  },
-  {
-    title: "Camping",
-    slug: "camping",
-    image: "/images/camping.jpg",
-    description: "Experience nights under the starlit Himalayan sky.",
-  },
-  {
-    title: "Village Tours",
-    slug: "village-tours",
-    image: "/images/activity-village.jpeg",
-    description: "Immerse yourself in the local culture and traditions.",
-  },
-];
 
-const blogPosts = [
-  {
-    title: "Top 5 Treks in Tirthan Valley",
-    slug: "top-5-treks-in-tirthan-valley",
-    date: "June 15, 2023",
-    image: "/images/blog-trek.jpg",
-    excerpt:
-      "Tirthan Valley offers some of the most breathtaking treks in the Himalayas. From the Great Himalayan National Park to the serene Serolsar Lake, here are the top 5 treks you must try.",
-  },
-  {
-    title: "Local Cuisine of Tirthan Valley",
-    slug: "local-cuisine-of-tirthan-valley",
-    date: "May 22, 2023",
-    image: "/images/blog-siddu.jpg",
-    excerpt:
-      "The local cuisine of Tirthan Valley is a delightful blend of Himachali flavors. Don't miss out on dishes like Sidu, Babru, and Aktori.",
-  },
-  {
-    title: "Best Time to Visit Tirthan Valley",
-    slug: "best-time-to-visit-tirthan-valley",
-    date: "April 10, 2023",
-    image: "/images/blog-seasons.jpg",
-    excerpt:
-      "Planning a trip to Tirthan Valley? Learn about the best seasons to visit and what each time of year has to offer for different activities and experiences.",
-  },
-];
 
-const testimonials = [
-  {
-    name: "Abhishek Raj",
-    location: "Jharkhand, India",
-    avatar: "/images/avatar-1.jpeg",
-    rating: 5,
-    text: "Tirthan Valley was a revelation! The pristine beauty, crystal clear rivers, and the warm hospitality of the locals made our trip unforgettable. The treks were challenging but rewarding with breathtaking views.",
-  },
-  {
-    name: "Tenzin Norgay",
-    location: "Delhi, India",
-    avatar: "/images/avatar-2.jpg",
-    rating: 5,
-    text: "As an avid trekker, I've been to many places, but Tirthan Valley stands out for its untouched beauty. The Great Himalayan National Park trek was the highlight of my trip. Will definitely come back!",
-  },
-  {
-    name: "Saksham Chauhan",
-    location: "Mumbai, India",
-    avatar: "/images/avatar-3.jpg",
-    rating: 4,
-    text: "A perfect getaway from the city chaos. The riverside camping experience was magical, and the local food was delicious. The only thing I wish I had was more time to explore this beautiful valley.",
-  },
-];
+
+
+
