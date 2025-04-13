@@ -38,7 +38,7 @@ export default function AboutPage() {
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden">
             <Image
-              src="/images/main.jpg"
+              src="/images/main.webp"
               alt="Tirthan Valley Landscape"
               fill
               className="object-cover"
@@ -49,7 +49,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="relative h-[400px] rounded-lg overflow-hidden md:order-first order-last">
             <Image
-              src="/images/culture01.jpg"
+              src="/images/culture01.webp"
               alt="Local Culture in Tirthan Valley"
               fill
               className="object-cover"
@@ -76,24 +76,24 @@ export default function AboutPage() {
         </div>
 
         <Card className="overflow-hidden border-0 shadow-lg hover-lift">
-                     <CardHeader>
-                       <CardTitle>Location</CardTitle>
-                     </CardHeader>
-                     <CardContent className="p-0">
-                       <div className="aspect-video w-full overflow-hidden">
-                         <iframe
-                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54570.14806326748!2d77.41693716953123!3d31.63500710000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f8c0a4e1bea3%3A0x7a73af102a4eb05a!2sTirthan%20Valley!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin"
-                           width="100%"
-                           height="100%"
-                           style={{ border: 0 }}
-                           allowFullScreen
-                           loading="lazy"
-                           referrerPolicy="no-referrer-when-downgrade"
-                           className="w-full h-full"
-                         ></iframe>
-                       </div>
-                     </CardContent>
-                   </Card>
+          <CardHeader>
+            <CardTitle>Location</CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="aspect-video w-full overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54570.14806326748!2d77.41693716953123!3d31.63500710000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f8c0a4e1bea3%3A0x7a73af102a4eb05a!2sTirthan%20Valley!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              ></iframe>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
@@ -144,7 +144,9 @@ export default function AboutPage() {
             <div className="border rounded-lg p-6 space-y-2">
               <h3 className="font-bold">By Rail</h3>
               <p className="text-sm text-muted-foreground">
-              The nearest railway station is in Una, about 220 km from Tirthan Valley. From there, you can take a bus or taxi to reach the valley.
+                The nearest railway station is in Una, about 220 km from Tirthan
+                Valley. From there, you can take a bus or taxi to reach the
+                valley.
               </p>
             </div>
             <div className="border rounded-lg p-6 space-y-2">

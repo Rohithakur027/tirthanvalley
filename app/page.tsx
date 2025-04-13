@@ -3,7 +3,14 @@ import { ArrowRight, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { attractions } from "@/data/attractiondata";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { activities } from "@/data/activitydata";
 import { testimonials } from "@/data/testimonialData";
 import { blogPosts } from "@/data/blogData";
@@ -135,49 +142,48 @@ export default function Home() {
 
             {/* check */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                       {attractions.slice(0,3).map((attraction, index) => (
-                         <Link
-                           key={index}
-                           href={`/explore/attractions/${attraction.slug}`}
-                           className="block"
-                         >
-                           <Card className="overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-300 group h-full">
-                             <div className="relative h-[220px] overflow-hidden">
-                               <Image
-                                 src={attraction.heroimage || "/placeholder.svg"}
-                                 alt={attraction.title}
-                                 fill
-                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                               />
-                               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
-                             </div>
-                             <CardHeader className="pb-2">
-                               <CardTitle  className="flex items-center gap-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                                 <MapPin className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                                 {attraction.title}
-                               </CardTitle>
-                               <div className="text-sm text-gray-600 dark:text-gray-400">
-                                 {attraction.location}
-                               </div>
-                             </CardHeader>
-                             <CardContent>
-                               <CardDescription  className="line-clamp-3">
-                                 {attraction.description}
-                               </CardDescription>
-                             </CardContent>
-                             <CardFooter className="pt-0">
-                               <div className="w-full group">
-                                 <div className="flex items-center justify-center gap-2 text-sm font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                                   Discover more
-                                   <ArrowRight className="h-4 w-4" />
-                                 </div>
-                               </div>
-                             </CardFooter>
-                           </Card>
-                         </Link>
-                       ))}
-                     </div>
-                   
+              {attractions.slice(0, 3).map((attraction, index) => (
+                <Link
+                  key={index}
+                  href={`/explore/attractions/${attraction.slug}`}
+                  className="block"
+                >
+                  <Card className="overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-300 group h-full">
+                    <div className="relative h-[220px] overflow-hidden">
+                      <Image
+                        src={attraction.heroimage || "/placeholder.svg"}
+                        alt={attraction.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                    </div>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                        <MapPin className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                        {attraction.title}
+                      </CardTitle>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        {attraction.location}
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="line-clamp-3">
+                        {attraction.description}
+                      </CardDescription>
+                    </CardContent>
+                    <CardFooter className="pt-0">
+                      <div className="w-full group">
+                        <div className="flex items-center justify-center gap-2 text-sm font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                          Discover more
+                          <ArrowRight className="h-4 w-4" />
+                        </div>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -196,7 +202,7 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-              {activities.slice(0,4).map((activity, index) => (
+              {activities.slice(0, 4).map((activity, index) => (
                 <div
                   key={index}
                   className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover-lift group"
@@ -369,7 +375,7 @@ export default function Home() {
                 size="lg"
                 className="bg-white text-emerald-600 hover:bg-gray-100 border-0 rounded-full px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
-                <Link href="/explore">Explore Destinations</Link>
+                <Link href="/explore/attractions">Explore Destinations</Link>
               </Button>
               <Button
                 asChild
@@ -386,11 +392,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
