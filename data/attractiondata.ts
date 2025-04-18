@@ -92,7 +92,7 @@ export const attractions = [
       {
         title: "Sai Ropa",
         slug: "sai-ropa",
-        image: "/images/shairopa.webp",
+        image: "/images/attraction-shairopa-01.webp",
         distance: "8 km",
       },
       {
@@ -575,7 +575,7 @@ export const relatedAttractions = [
   {
     title: "Chehni Kothi",
     slug: "chehni-kothi",
-    image: "/images/chehni.webp",
+    image: "/images/attraction-chehnikothi-03.webp",
     shortDescription:
       "An ancient stone and wood tower showcasing traditional Himachali architecture.",
   },

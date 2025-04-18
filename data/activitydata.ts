@@ -1,27 +1,27 @@
 export interface ActivityItineraryItem {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
 export interface Activity {
-  title: string
-  slug: string
-  category: "Adventure" | "Nature & Wildlife" | "Cultural"
-  location: string
-  duration: string
-  difficulty?: "Easy" | "Moderate" | "Challenging"
-  images: string[]
-  description: string[]
-  highlights: string[]
-  itinerary?: ActivityItineraryItem[]
-  whatToBring: string[]
-  bestTime: string
-  price?: string
-  groupSize?: string
-  tips: string[]
-  mapUrl: string
-  shortDescription: string
-  heroimage: string
+  title: string;
+  slug: string;
+  category: "Adventure" | "Nature & Wildlife" | "Cultural";
+  location: string;
+  duration: string;
+  difficulty?: "Easy" | "Moderate" | "Challenging";
+  images: string[];
+  description: string[];
+  highlights: string[];
+  itinerary?: ActivityItineraryItem[];
+  whatToBring: string[];
+  bestTime: string;
+  price?: string;
+  groupSize?: string;
+  tips: string[];
+  mapUrl: string;
+  shortDescription: string;
+  heroimage: string;
 }
 
 export const activities: Activity[] = [
@@ -122,7 +122,8 @@ export const activities: Activity[] = [
       "/images/activity-trout-fishing-05.webp",
     ],
     heroimage: "/images/activity-fishing.webp",
-    shortDescription: "Catch trout in the crystal-clear waters of the Tirthan River.",
+    shortDescription:
+      "Catch trout in the crystal-clear waters of the Tirthan River.",
     description: [
       "Experience the joy of angling in the crystal-clear waters of the Tirthan River, renowned for its abundant brown and rainbow trout. This pristine river, flowing through the heart of Tirthan Valley, offers some of the best trout fishing opportunities in the Himalayas.",
       "Trout fishing in Tirthan River is a peaceful yet exciting activity that allows you to connect with nature while testing your angling skills. The river's clean, fast-flowing waters create an ideal habitat for trout, making it a paradise for fishing enthusiasts of all levels.",
@@ -169,7 +170,8 @@ export const activities: Activity[] = [
       "/images/activity-riverside-camping-03.webp",
     ],
     heroimage: "/images/riverside-camping.webp",
-    shortDescription: "Experience nights under the starlit Himalayan sky by the riverside.",
+    shortDescription:
+      "Experience nights under the starlit Himalayan sky by the riverside.",
     description: [
       "Escape the hustle and bustle of city life with a tranquil camping experience by the Tirthan River. Fall asleep to the soothing sounds of flowing water and wake up to the chirping of birds in this pristine natural setting.",
       "Our riverside camping experience offers comfortable tents set up in scenic locations along the Tirthan River. Each campsite is carefully selected to provide privacy, safety, and stunning views of the surrounding mountains and forests.",
@@ -211,9 +213,14 @@ export const activities: Activity[] = [
     location: "Various villages in Tirthan Valley",
     duration: "Half day - Full day",
 
-    images: ["/images/village02.webp", "/images/attraction-sharchi-05.webp", "/images/village03.webp"],
+    images: [
+      "/images/village02.webp",
+      "/images/attraction-sharchi-05.webp",
+      "/images/village03.webp",
+    ],
     heroimage: "/images/village03.webp",
-    shortDescription: "Immerse yourself in the local culture and traditions of Himachali villages.",
+    shortDescription:
+      "Immerse yourself in the local culture and traditions of Himachali villages.",
     description: [
       "Immerse yourself in the authentic rural life of Himachal Pradesh with our guided village tours in Tirthan Valley. These tours offer a unique opportunity to experience the rich cultural heritage, traditional architecture, and warm hospitality of the local communities.",
       "Visit traditional Himachali villages like Gushaini, Nagini, and Shoja, where time seems to stand still. Explore ancient wooden houses with intricate carvings, interact with friendly locals, and learn about their customs, traditions, and sustainable way of life that has remained largely unchanged for generations.",
@@ -233,7 +240,8 @@ export const activities: Activity[] = [
       "Water bottle",
       "Small gifts for host families (optional)",
     ],
-    bestTime: "Year-round (each season offers a different perspective of village life)",
+    bestTime:
+      "Year-round (each season offers a different perspective of village life)",
     price: "₹800 - ₹2,000 per person (depending on duration and inclusions)",
     groupSize: "1-10 people",
     tips: [
@@ -263,7 +271,8 @@ export const activities: Activity[] = [
       "/images/activity-bird-watching-01.webp",
     ],
     heroimage: "/images/activity-bird-watching-01.webp",
-    shortDescription: "Spot rare and colorful bird species in their natural habitat.",
+    shortDescription:
+      "Spot rare and colorful bird species in their natural habitat.",
     description: [
       "Tirthan Valley is a paradise for bird enthusiasts, with over 200 species of birds inhabiting its diverse ecosystems. Our guided bird watching tours offer a chance to spot some of the rarest and most colorful avian species in the Himalayas.",
       "The Great Himalayan National Park and surrounding forests are home to several endangered and endemic bird species, including the Western Tragopan, Himalayan Monal (the state bird of Himachal Pradesh), Koklass Pheasant, and White-throated Tit. With the guidance of our expert naturalists, you'll have the opportunity to observe these magnificent birds in their natural habitat.",
@@ -312,7 +321,8 @@ export const activities: Activity[] = [
       "/images/attraction-jalori-02.webp",
     ],
     heroimage: "/images/attraction-raghupur-01.webp",
-    shortDescription: "Trek to one of the lowest mountain passes in the Himalayas with breathtaking views.",
+    shortDescription:
+      "Trek to one of the lowest mountain passes in the Himalayas with breathtaking views.",
     description: [
       "Embark on an exhilarating trek to Jalori Pass, one of the lowest mountain passes in the Himalayas at an altitude of 3,120 meters (10,236 feet). This accessible yet rewarding trek offers breathtaking panoramic views of the surrounding mountains and valleys, making it perfect for both beginners and experienced trekkers.",
       "The trek begins from the road head at Jalori Pass, which is accessible by vehicle from Tirthan Valley. From there, you can choose between two popular trekking routes: one leading to the serene Serolsar Lake and the other to the historic Raghupur Fort. Both trails take you through dense forests of oak, deodar, and pine, with abundant wildflowers and diverse bird species.",
@@ -358,7 +368,8 @@ export const activities: Activity[] = [
       "Camera",
     ],
     bestTime: "April to June and September to November",
-    price: "₹1,000 - ₹2,500 per person (depending on group size and inclusions)",
+    price:
+      "₹1,000 - ₹2,500 per person (depending on group size and inclusions)",
     groupSize: "1-8 people",
     tips: [
       "Start early to have ample time for exploration at your destination",
@@ -385,7 +396,8 @@ export const activities: Activity[] = [
       "/images/activity-cooking-03.webp",
     ],
     heroimage: "/images/activity-cooking-02.webp",
-    shortDescription: "Learn to prepare traditional Himachali dishes from local experts.",
+    shortDescription:
+      "Learn to prepare traditional Himachali dishes from local experts.",
     description: [
       "Discover the authentic flavors of Himachali cuisine through our immersive cooking classes led by local experts. These hands-on culinary experiences offer a delightful way to connect with the region's rich cultural heritage through its traditional food.",
       "Learn to prepare signature Himachali dishes such as Siddu (steamed bread stuffed with poppy seeds), Madra (chickpeas in yogurt gravy), Chana Madra (chickpeas in yogurt gravy), Babru (black gram stuffed flatbread), and various local pickles and chutneys. Our cooking classes emphasize the use of locally sourced, seasonal ingredients and traditional cooking techniques that have been passed down through generations.",
@@ -431,7 +443,8 @@ export const activities: Activity[] = [
       "/images/activity-photography-03.webp",
     ],
     heroimage: "/images/main.webp",
-    shortDescription: "Capture the breathtaking landscapes, vibrant culture, and diverse wildlife of Tirthan Valley.",
+    shortDescription:
+      "Capture the breathtaking landscapes, vibrant culture, and diverse wildlife of Tirthan Valley.",
     description: [
       "Capture the breathtaking beauty of Tirthan Valley through our specialized photography tours, designed for both amateur enthusiasts and seasoned photographers. These guided excursions take you to the most photogenic locations in the valley at optimal times for lighting and composition.",
       "Led by experienced photographers familiar with the region, our tours focus on diverse themes including landscape, wildlife, cultural, and macro photography. Your guide will help you find the perfect angles, adjust your camera settings, and develop your unique photographic style while exploring the valley's stunning natural and cultural heritage.",
@@ -454,7 +467,8 @@ export const activities: Activity[] = [
       "Comfortable walking shoes",
       "Water bottle and snacks",
     ],
-    bestTime: "Year-round (each season offers unique photographic opportunities)",
+    bestTime:
+      "Year-round (each season offers unique photographic opportunities)",
     price: "₹2,000 - ₹5,000 per person (depending on duration and location)",
     groupSize: "1-6 people",
     tips: [
@@ -475,12 +489,13 @@ export const activities: Activity[] = [
     location: "Shairopa Village, Tirthan Valley",
     duration: "1-2 hours",
     images: [
-      "/images/activity-naturecenter-1.webp",
-      "/images/activity-naturecenter-2.webp",
-      "/images/activity-naturecenter-3.webp",
-      "/images/activity-naturecenter-4.webp",
+      "/images/attraction-nlc-01.webp",
+      "/images/attraction-nlc-02.webp",
+      "/images/attraction-nlc-03.webp",
+      "/images/attraction-nlc-04.webp",
+      "/images/attraction-nlc-05.webp",
     ],
-    heroimage: "/images/activity-naturecenter.webp",
+    heroimage: "/images/attraction-nlc-06.webp",
     shortDescription:
       "A gentle walk to the Nature Learning Center — a model of GHNP with animal statues, ideal for families and elderly visitors.",
     description: [
@@ -520,9 +535,15 @@ export const activities: Activity[] = [
     category: "Cultural",
     location: "Various villages in Tirthan Valley",
     duration: "2-4 hours",
-    images: ["/images/.webp", "/images/locals02.webp", "/images/locals04.webp", "/images/activity-crafts-4.webp"],
+    images: [
+      "/images/.webp",
+      "/images/locals02.webp",
+      "/images/locals04.webp",
+      "/images/activity-crafts-4.webp",
+    ],
     heroimage: "/images/locals02.webp",
-    shortDescription: "Learn traditional Himachali crafts like weaving, wood carving, and basket making.",
+    shortDescription:
+      "Learn traditional Himachali crafts like weaving, wood carving, and basket making.",
     description: [
       "Immerse yourself in the rich artistic heritage of Himachal Pradesh through our traditional craft workshops in Tirthan Valley. These hands-on sessions offer a unique opportunity to learn ancient crafting techniques from skilled local artisans who have inherited their knowledge through generations.",
       "Choose from a variety of traditional Himachali crafts including wool weaving, Kullu shawl making, wood carving, basket weaving, and traditional Himachali jewelry making. Each workshop begins with an introduction to the cultural significance and history of the craft, followed by a demonstration of techniques and materials used.",
@@ -553,4 +574,4 @@ export const activities: Activity[] = [
     mapUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13483.204673124224!2d77.45!3d31.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f8c0a4e1bea3%3A0x7a73af102a4eb05a!2sTirthan%20Valley!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin",
   },
-]
+];
