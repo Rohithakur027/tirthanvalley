@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://thetirthanvalley.in
+
+# Sitemaps
+Sitemap: https://thetirthanvalley.in/sitemap.xml
