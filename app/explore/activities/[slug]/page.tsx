@@ -1,55 +1,104 @@
-"use client";
+import { Button } from "@/components/ui/button"
+import type { Metadata } from "next"
+import { ArrowLeft, Clock, MapPin, Calendar, User, Star, AlertTriangle } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { activities } from "@/data/activitydata"
+import ImageGallery from "../../attractions/[slug]/imageGallery"
 
-import { Button } from "@/components/ui/button";
-import {
-  ArrowLeft,
-  Clock,
-  MapPin,
-  Calendar,
-  User,
-  Star,
-  AlertTriangle,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState, use } from "react";
-import { activities } from "@/data/activitydata";
-
-interface ActivityPageParams {
-  params: Promise<{
-    slug: string;
-  }>;
+//  SERVER COMPONENT FUNCTIONS - Generate static paths at build time
+export async function generateStaticParams() {
+  return activities.map((activity) => ({
+    slug: activity.slug,
+  }))
 }
 
-export default function ActivityPage({ params }: ActivityPageParams) {
-  const unwrappedParams = use(params);
-  const slug = unwrappedParams.slug;
+type Params = {
+  params: Promise<{ slug: string }>
+}
 
-  const activity = activities.find((activity) => activity.slug === slug);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+//  SEO METADATA GENERATION - Runs on server for each page
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params
+  const activity = activities.find((a) => a.slug === slug)
 
+  if (!activity) {
+    return {
+      title: "Activity Not Found | Tirthan Valley",
+      description: "This activity doesn't exist.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    }
+  }
+
+  const title = `${activity.title} - ${activity.category} in Tirthan Valley`
+  const description =
+    activity.description?.[0]?.slice(0, 160) ||
+    `Experience ${activity.title} in Tirthan Valley — ${activity.category} activity in the beautiful Himalayas.`
+  const imageUrl = activity.heroimage || "/default-og-image.jpg"
+  const canonicalUrl = `https://thetirthanvalley.in/explore/activities/${slug}`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "Tirthan Valley",
+      type: "article",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${activity.title} - ${activity.category} in Tirthan Valley`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+    keywords: [activity.title, activity.category, "Tirthan Valley", "Himachal Pradesh", "Adventure", "Activities"],
+  }
+}
+
+function getActivityBySlug(slug: string) {
+  return activities.find((activity) => activity.slug === slug)
+}
+
+
+//  MAIN SERVER COMPONENT - Handles static content and data fetching
+export default async function ActivityPage({ params }: Params) {
+  const { slug } = await params
+  const activity = getActivityBySlug(slug)
+
+  //  Handle not found case on server
   if (!activity) {
     return (
       <div className="container py-20 text-center">
         <h1 className="text-2xl font-bold mb-4">Activity not found</h1>
-        <p className="mb-8 text-gray-600 dark:text-gray-400">
-          The activity you're looking for doesn't exist.
-        </p>
+        <p className="mb-8 text-gray-600 dark:text-gray-400">The activity you're looking for doesn't exist.</p>
         <Button asChild>
           <Link href="/explore/activities">View all activities</Link>
         </Button>
       </div>
-    );
+    )
   }
 
   return (
     <div className="bg-white dark:bg-gray-950">
       <div className="container py-12 md:py-24">
-        <Button
-          asChild
-          variant="ghost"
-          className="mb-8 hover:bg-gray-100 dark:hover:bg-gray-800"
-        >
+        {/*  STATIC NAVIGATION - Rendered on server */}
+        <Button asChild variant="ghost" className="mb-8 hover:bg-gray-100 dark:hover:bg-gray-800">
           <Link href="/explore/activities" className="flex items-center gap-2">
             <ArrowLeft className="h-4 w-4" />
             Back to all activities
@@ -57,15 +106,14 @@ export default function ActivityPage({ params }: ActivityPageParams) {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
+          {/*  MAIN CONTENT - All static, rendered on server */}
           <div className="lg:col-span-2 space-y-8">
+            {/*  STATIC HEADER */}
             <div>
               <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 mb-4">
                 {activity.category}
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-                {activity.title}
-              </h1>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">{activity.title}</h1>
               <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-6">
                 <div className="flex items-center gap-1">
                   <MapPin className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
@@ -81,58 +129,25 @@ export default function ActivityPage({ params }: ActivityPageParams) {
                     <span>Difficulty: {activity.difficulty}</span>
                   </div>
                 )}
-                <div className="flex items-center gap-1"></div>
               </div>
             </div>
 
-            {/* Image Gallery */}
-            <div className="space-y-4">
-              <div className="relative h-[400px] w-full overflow-hidden rounded-xl">
-                <Image
-                  src={activity.images[activeImageIndex] || "/placeholder.svg"}
-                  alt={activity.title}
-                  fill
-                  className="object-cover transition-all duration-500"
-                />
-              </div>
-              <div className="flex gap-2 overflow-x-auto pb-2">
-                {activity.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveImageIndex(index)}
-                    className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
-                      activeImageIndex === index
-                        ? "border-emerald-500 dark:border-emerald-400"
-                        : "border-transparent hover:border-gray-300 dark:hover:border-gray-700"
-                    }`}
-                  >
-                    <Image
-                      src={image || "/placeholder.svg"}
-                      alt={`${activity.title} ${index + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
+            {/* CLIENT COMPONENT - Only interactive image gallery */}
+            <ImageGallery images={activity.images} title={activity.title} />
 
-            {/* Description */}
+            {/* STATIC DESCRIPTION */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">About This Activity</h2>
               <div className="prose prose-lg max-w-none dark:prose-invert">
                 {activity.description.map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className="text-gray-700 dark:text-gray-300 leading-relaxed"
-                  >
+                  <p key={index} className="text-gray-700 dark:text-gray-300 leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
               </div>
             </div>
 
-            {/* Highlights */}
+            {/*STATIC HIGHLIGHTS */}
             {activity.highlights && (
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Highlights</h2>
@@ -154,7 +169,7 @@ export default function ActivityPage({ params }: ActivityPageParams) {
               </div>
             )}
 
-            {/* Itinerary */}
+            {/* STATIC ITINERARY */}
             {activity.itinerary && (
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Itinerary</h2>
@@ -166,28 +181,21 @@ export default function ActivityPage({ params }: ActivityPageParams) {
                     >
                       <div className="absolute left-[-8px] top-0 w-4 h-4 rounded-full bg-emerald-500"></div>
                       <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                      <p className="text-gray-700 dark:text-gray-300">
-                        {item.description}
-                      </p>
+                      <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
                     </div>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* What to Bring */}
+            {/*  STATIC WHAT TO BRING */}
             {activity.whatToBring && (
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">What to Bring</h2>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {activity.whatToBring.map((item, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center gap-2 text-gray-700 dark:text-gray-300"
-                    >
-                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">
-                        •
-                      </span>
+                    <li key={index} className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -195,7 +203,7 @@ export default function ActivityPage({ params }: ActivityPageParams) {
               </div>
             )}
 
-            {/* Map */}
+            {/*  STATIC MAP */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Location</h2>
               <div className="aspect-video w-full overflow-hidden rounded-xl border border-gray-100 dark:border-gray-800">
@@ -213,7 +221,7 @@ export default function ActivityPage({ params }: ActivityPageParams) {
             </div>
           </div>
 
-          {/* Sidebar */}
+          {/*  STATIC SIDEBAR */}
           <div className="space-y-6">
             {/* Quick Info */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
@@ -223,18 +231,14 @@ export default function ActivityPage({ params }: ActivityPageParams) {
                   <Clock className="h-5 w-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="font-medium">Duration</span>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {activity.duration}
-                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{activity.duration}</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <Calendar className="h-5 w-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="font-medium">Best Time</span>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {activity.bestTime}
-                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{activity.bestTime}</p>
                   </div>
                 </li>
                 {activity.price && (
@@ -257,9 +261,7 @@ export default function ActivityPage({ params }: ActivityPageParams) {
                     </svg>
                     <div>
                       <span className="font-medium">Price Range</span>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {activity.price}
-                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{activity.price}</p>
                     </div>
                   </li>
                 )}
@@ -268,9 +270,7 @@ export default function ActivityPage({ params }: ActivityPageParams) {
                     <User className="h-5 w-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                     <div>
                       <span className="font-medium">Group Size</span>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {activity.groupSize}
-                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{activity.groupSize}</p>
                     </div>
                   </li>
                 )}
@@ -282,13 +282,8 @@ export default function ActivityPage({ params }: ActivityPageParams) {
               <h3 className="text-xl font-bold">Tips for Participants</h3>
               <ul className="space-y-2">
                 {activity.tips.map((tip, index) => (
-                  <li
-                    key={index}
-                    className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
-                  >
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">
-                      •
-                    </span>
+                  <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
                     <span>{tip}</span>
                   </li>
                 ))}
@@ -304,20 +299,14 @@ export default function ActivityPage({ params }: ActivityPageParams) {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2">
                   <span className="font-medium">Phone:</span>
-                  <span className="text-gray-600 dark:text-gray-400">
-                    +91 78078 18119
-                  </span>
+                  <span className="text-gray-600 dark:text-gray-400">+91 78078 18119</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="font-medium">Email:</span>
-                  <span className="text-gray-600 dark:text-gray-400">
-                    exploretirthanvalley@gmail.com
-                  </span>
+                  <span className="text-gray-600 dark:text-gray-400">exploretirthanvalley@gmail.com</span>
                 </li>
               </ul>
-              <Button className="w-full mt-2 bg-emerald-600 hover:bg-emerald-700">
-                Inquire Now
-              </Button>
+              <Button className="w-full mt-2 bg-emerald-600 hover:bg-emerald-700">Inquire Now</Button>
             </div>
 
             {/* Related Activities */}
@@ -325,20 +314,12 @@ export default function ActivityPage({ params }: ActivityPageParams) {
               <h3 className="text-xl font-bold">Similar Activities</h3>
               <ul className="space-y-3">
                 {activities
-                  .filter(
-                    (related) =>
-                      related.slug !== slug &&
-                      related.category === activity.category
-                  )
+                  .filter((related) => related.slug !== slug && related.category === activity.category)
                   .slice(0, 3)
                   .map((related, index) => (
                     <li key={index}>
-                      <Link
-                        href={`/explore/activities/${related.slug}`}
-                        className="flex items-start gap-3 group"
-                      >
+                      <Link href={`/explore/activities/${related.slug}`} className="flex items-start gap-3 group">
                         <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg">
-                          {/* error */}
                           <Image
                             src={related.heroimage || "/placeholder.svg"}
                             alt={related.title}
@@ -350,9 +331,7 @@ export default function ActivityPage({ params }: ActivityPageParams) {
                           <h4 className="font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                             {related.title}
                           </h4>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {related.category}
-                          </p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">{related.category}</p>
                         </div>
                       </Link>
                     </li>
@@ -362,7 +341,7 @@ export default function ActivityPage({ params }: ActivityPageParams) {
           </div>
         </div>
 
-        {/* Related Activities */}
+        {/*  STATIC RELATED ACTIVITIES */}
         <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
           <h2 className="text-2xl font-bold mb-6">You May Also Like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -400,5 +379,7 @@ export default function ActivityPage({ params }: ActivityPageParams) {
         </div>
       </div>
     </div>
-  );
+  )
 }
+
+//  SERVER-SIDE DATA FETCHING FUNCTION

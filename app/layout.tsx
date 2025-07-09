@@ -16,8 +16,7 @@ export const metadata: Metadata = {
   title: "Tirthan Valley - A Hidden Gem in the Himalayas",
   description:
     "Discover the serenity of Tirthan Valley, a hidden gem nestled in the Himalayas. Explore its pristine rivers, lush forests, and majestic mountains.",
-    generator: 'v0.dev'
-}
+    }
 
 export default function RootLayout({
   children,

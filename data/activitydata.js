@@ -1,30 +1,30 @@
-export interface ActivityItineraryItem {
-  title: string;
-  description: string;
-}
+// export interface ActivityItineraryItem {
+//   title: string;
+//   description: string;
+// }
 
-export interface Activity {
-  title: string;
-  slug: string;
-  category: "Adventure" | "Nature & Wildlife" | "Cultural";
-  location: string;
-  duration: string;
-  difficulty?: "Easy" | "Moderate" | "Challenging";
-  images: string[];
-  description: string[];
-  highlights: string[];
-  itinerary?: ActivityItineraryItem[];
-  whatToBring: string[];
-  bestTime: string;
-  price?: string;
-  groupSize?: string;
-  tips: string[];
-  mapUrl: string;
-  shortDescription: string;
-  heroimage: string;
-}
+// export interface Activity {
+//   title: string;
+//   slug: string;
+//   category: "Adventure" | "Nature & Wildlife" | "Cultural";
+//   location: string;
+//   duration: string;
+//   difficulty?: "Easy" | "Moderate" | "Challenging";
+//   images: string[];
+//   description: string[];
+//   highlights: string[];
+//   itinerary?: ActivityItineraryItem[];
+//   whatToBring: string[];
+//   bestTime: string;
+//   price?: string;
+//   groupSize?: string;
+//   tips: string[];
+//   mapUrl: string;
+//   shortDescription: string;
+//   heroimage: string;
+// }
 
-export const activities: Activity[] = [
+export const activities = [
   {
     title: "Trekking in Great Himalayan National Park",
     slug: "trekking-ghnp",
