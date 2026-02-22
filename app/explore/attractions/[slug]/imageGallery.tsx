@@ -18,10 +18,10 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
       {/* ✅ MAIN IMAGE DISPLAY */}
       <div className="relative h-[400px] w-full overflow-hidden rounded-xl">
         <Image
-          loading="lazy"
           src={images[activeImageIndex] || "/placeholder.svg"}
           alt={title}
           fill
+          priority={activeImageIndex === 0}
           className="object-cover transition-all duration-500"
         />
       </div>

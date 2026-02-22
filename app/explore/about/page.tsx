@@ -1,10 +1,51 @@
+import type { Metadata } from "next"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
+import Breadcrumb from "@/components/Breadcrumb";
+
+export const metadata: Metadata = {
+  title: "About Tirthan Valley | Tirthan Valley",
+  description:
+    "Learn about Tirthan Valley in Kullu, Himachal Pradesh — history, culture, geography, how to reach, and why it's one of India's best offbeat Himalayan destinations.",
+  alternates: {
+    canonical: "https://thetirthanvalley.in/explore/about",
+  },
+  openGraph: {
+    title: "About Tirthan Valley | Tirthan Valley",
+    description:
+      "Learn about Tirthan Valley in Kullu, Himachal Pradesh — history, culture, geography, how to reach, and why it's one of India's best offbeat Himalayan destinations.",
+    url: "https://thetirthanvalley.in/explore/about",
+    siteName: "Tirthan Valley",
+    type: "website",
+    images: [
+      {
+        url: "https://thetirthanvalley.in/images/main.webp",
+        width: 1200,
+        height: 630,
+        alt: "Panoramic view of Tirthan Valley with mountains and Tirthan River in Himachal Pradesh",
+      },
+    ],
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Tirthan Valley | Tirthan Valley",
+    description:
+      "Learn about Tirthan Valley in Kullu, Himachal Pradesh — history, culture, geography, how to reach, and why it's one of India's best offbeat Himalayan destinations.",
+    images: ["https://thetirthanvalley.in/images/main.webp"],
+  },
+}
 
 export default function AboutPage() {
   return (
     <div className="container px-4 py-12 md:px-6 md:py-24">
       <div className="flex flex-col space-y-12">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "About Tirthan Valley" },
+          ]}
+        />
         <div className="space-y-4">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
             About Tirthan Valley
@@ -39,8 +80,9 @@ export default function AboutPage() {
           <div className="relative h-[400px] rounded-lg overflow-hidden">
             <Image
               src="/images/main.webp"
-              alt="Tirthan Valley Landscape"
+              alt="Panoramic view of Tirthan Valley with mountains and Tirthan River in Himachal Pradesh"
               fill
+              priority
               className="object-cover"
             />
           </div>
@@ -50,7 +92,7 @@ export default function AboutPage() {
           <div className="relative h-[400px] rounded-lg overflow-hidden md:order-first order-last">
             <Image
               src="/images/culture01.webp"
-              alt="Local Culture in Tirthan Valley"
+              alt="Traditional Himachali culture and festival celebrations in Tirthan Valley"
               fill
               className="object-cover"
             />
@@ -102,7 +144,7 @@ export default function AboutPage() {
               Tirthan Valley is situated in the western Himalayas, surrounded by
               towering peaks and dense forests. The Tirthan River, a tributary
               of the Beas River, flows through the valley, adding to its scenic
-              beauty. The valley's diverse topography includes alpine meadows,
+              beauty. The valley&apos;s diverse topography includes alpine meadows,
               dense forests, and rugged mountains.
             </p>
           </div>

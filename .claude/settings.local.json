@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tail:*)",
+      "Bash(ls:*)",
+      "Bash(cd D:/01exploretirthanvalley/thetirthanvalley && npm run build 2>&1)",
+      "Bash(wc:*)",
+      "Bash(cd:*)",
+      "Bash(cd D:/01exploretirthanvalley/thetirthanvalley && npm uninstall next-sitemap 2>&1)"
+    ]
+  }
+}

@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,12 +11,42 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Bed, Coffee, MapPin, Star, Tent } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
+
+export const metadata: Metadata = {
+  title: "Places to Stay | Tirthan Valley",
+  description:
+    "Best places to stay in Tirthan Valley — homestays, riverside camps, hotels & resorts with ratings and prices. Book accommodations near GHNP from ₹800/night.",
+  alternates: {
+    canonical: "https://thetirthanvalley.in/explore/stay",
+  },
+  openGraph: {
+    title: "Places to Stay | Tirthan Valley",
+    description:
+      "Best places to stay in Tirthan Valley — homestays, riverside camps, hotels & resorts with ratings and prices.",
+    url: "https://thetirthanvalley.in/explore/stay",
+    siteName: "Tirthan Valley",
+    type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Places to Stay | Tirthan Valley",
+    description:
+      "Best places to stay in Tirthan Valley — homestays, riverside camps, hotels & resorts with ratings and prices.",
+  },
+}
 
 export default function StayPage() {
   return (
     <div className="container px-4 py-12 md:px-6 md:py-24">
       <div className="flex flex-col space-y-8">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Places to Stay" },
+          ]}
+        />
         <div className="space-y-2">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
             Places to Stay
@@ -161,7 +192,7 @@ function AccommodationCard({ accommodation }: AccommodationCardProps) {
           <span className="text-sm text-muted-foreground"> / night</span>
         </div>
         <Button asChild>
-          <Link href={`/explore/stay/${accommodation.slug}`}>View Details</Link>
+          <a href="https://wa.me/917807818119?text=Hi%2C%20I%20want%20to%20inquire%20about%20staying%20at%20Tirthan%20Valley" target="_blank" rel="noopener noreferrer">Inquire Now</a>
         </Button>
       </CardFooter>
     </Card>

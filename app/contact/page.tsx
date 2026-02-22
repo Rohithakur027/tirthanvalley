@@ -20,17 +20,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Facebook,
   Instagram,
   Mail,
   MapPin,
   Phone,
-  Twitter,
   CheckCircle,
 } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -76,6 +75,12 @@ export default function ContactPage() {
   return (
     <div className="container px-4 py-12 md:px-6 md:py-24">
       <div className="flex flex-col space-y-8">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Contact Us" },
+          ]}
+        />
         <div className="space-y-2 text-center">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl slide-up">
             Contact Us
@@ -282,22 +287,9 @@ export default function ContactPage() {
                   <h3 className="font-medium mb-4">Follow Us</h3>
                   <div className="flex gap-4">
                     <a
-                      href="#"
-                      className="bg-gray-100 dark:bg-gray-800 p-3 rounded-full hover:bg-emerald-100 hover:text-emerald-600 dark:hover:bg-emerald-900/30 dark:hover:text-emerald-400 transition-colors"
-                    >
-                      <Facebook className="h-5 w-5" />
-                      <span className="sr-only">Facebook</span>
-                    </a>
-                    <a
-                      href="#"
-                      className="bg-gray-100 dark:bg-gray-800 p-3 rounded-full hover:bg-emerald-100 hover:text-emerald-600 dark:hover:bg-emerald-900/30 dark:hover:text-emerald-400 transition-colors"
-                    >
-                      <Twitter className="h-5 w-5" />
-                      <span className="sr-only">Twitter</span>
-                    </a>
-                    <a
                       href="https://www.instagram.com/thetirthanvalley/"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="bg-gray-100 dark:bg-gray-800 p-3 rounded-full hover:bg-emerald-100 hover:text-emerald-600 dark:hover:bg-emerald-900/30 dark:hover:text-emerald-400 transition-colors"
                     >
                       <Instagram className="h-5 w-5" />

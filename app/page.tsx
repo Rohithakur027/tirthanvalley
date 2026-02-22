@@ -14,6 +14,39 @@ import {
 import { activities } from "@/data/activitydata";
 import { testimonials } from "@/data/testimonialData";
 import { blogPosts } from "@/data/blogData";
+
+const attractionCardAlts: Record<string, string> = {
+  'great-himalayan-national-park': 'Lush green valleys and snow-capped peaks at Great Himalayan National Park near Tirthan Valley',
+  'jalori-pass': 'Scenic mountain view from Jalori Pass trek route at 3120 metres in Himachal Pradesh',
+  'serolsar-lake': 'Sacred Serolsar Lake surrounded by deodar forests near Jalori Pass Tirthan Valley',
+  'tirthan-river': 'Crystal clear Tirthan River flowing through the valley with mountain backdrop',
+  'chehni-kothi': 'Ancient 1500-year-old Chehni Kothi tower showcasing traditional Himachali architecture',
+  'raghupur-fort': 'Ruins of Raghupur Fort with panoramic Himalayan views near Jalori Pass',
+  'jibhi': 'Picturesque wooden houses and pine forests in Jibhi village near Tirthan Valley',
+  'sharchi-village': 'Traditional Himachali stone and wood houses in Sharchi Village Tirthan Valley',
+  'shairopa': 'GHNP Nature Learning Centre at Sai Ropa with ecological exhibits Tirthan Valley',
+}
+
+const activityCardAlts: Record<string, string> = {
+  'trekking-ghnp': 'Trekkers hiking through pine forest on GHNP trail in Tirthan Valley',
+  'trout-fishing': 'Angler fly fishing for trout in crystal clear Tirthan River',
+  'riverside-camping': 'Camping tents along Tirthan River banks with mountain views at sunset',
+  'village-tours': 'Travellers walking through traditional Himachali village in Tirthan Valley',
+  'bird-watching': 'Colourful Himalayan Monal pheasant spotted during birdwatching in GHNP',
+  'jalori-pass-trek': 'Hikers on scenic Jalori Pass trekking trail with Himalayan panorama',
+  'cooking-classes': 'Traveller learning to make traditional Siddu bread at Himachali cooking class',
+  'photography-tours': 'Photographer capturing sunrise over Tirthan Valley mountain landscape',
+  'nature-learning-center-walk': 'Visitors at GHNP Nature Learning Centre Sai Ropa ecological exhibits',
+  'craft-workshops': 'Local artisan demonstrating traditional Himachali wool weaving craft',
+}
+
+const blogCardAlts: Record<string, string> = {
+  'top-5-treks-in-tirthan-valley': 'Trekking trail through pine forest in Tirthan Valley Himachal Pradesh',
+  'local-cuisine-of-tirthan-valley': 'Siddu traditional Himachali bread and local cuisine of Tirthan Valley',
+  'best-time-to-visit-tirthan-valley': 'Tirthan Valley landscape showing seasonal Himalayan beauty',
+  'wildlife-spotting-in-great-himalayan-national-park': 'Himalayan Monal bird in Great Himalayan National Park Tirthan Valley',
+}
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -82,9 +115,10 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-2xl shadow-2xl hover-lift">
                 <Image
                   src="/images/main.webp"
-                  alt="Tirthan Valley Landscape"
+                  alt="Panoramic view of Tirthan Valley with mountains and Tirthan River in Himachal Pradesh"
                   width={550}
                   height={400}
+                  priority
                   className="w-full aspect-video object-cover object-center transition-transform duration-700 hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
@@ -152,7 +186,7 @@ export default function Home() {
                     <div className="relative h-[220px] overflow-hidden">
                       <Image
                         src={attraction.heroimage || "/placeholder.svg"}
-                        alt={attraction.title}
+                        alt={attractionCardAlts[attraction.slug] || `${attraction.title} in Tirthan Valley Himachal Pradesh`}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
@@ -210,7 +244,7 @@ export default function Home() {
                   <div className="relative h-[200px] overflow-hidden">
                     <Image
                       src={activity.heroimage || "/placeholder.svg"}
-                      alt={activity.title}
+                      alt={activityCardAlts[activity.slug] || activity.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -263,7 +297,7 @@ export default function Home() {
                   <div className="relative h-[220px] overflow-hidden">
                     <Image
                       src={post.image || "/placeholder.svg"}
-                      alt={post.title}
+                      alt={blogCardAlts[post.slug] || post.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -323,7 +357,7 @@ export default function Home() {
                   <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
                     <Image
                       src={testimonial.avatar || "/placeholder.svg"}
-                      alt={testimonial.name}
+                      alt={`Photo of ${testimonial.name} Tirthan Valley visitor`}
                       fill
                       className="object-cover"
                     />

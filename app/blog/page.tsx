@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import {
   Card,
   CardContent,
@@ -10,11 +11,52 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
+import { blogPosts } from "@/data/blogData";
+
+export const metadata: Metadata = {
+  title: "Blog | Tirthan Valley",
+  description:
+    "Tirthan Valley travel blog — trekking guides, local food, best time to visit, wildlife spotting tips & trip planning advice from local experts.",
+  alternates: {
+    canonical: "https://thetirthanvalley.in/blog",
+  },
+  openGraph: {
+    title: "Blog | Tirthan Valley",
+    description:
+      "Tirthan Valley travel blog — trekking guides, local food, best time to visit, wildlife spotting tips & trip planning advice from local experts.",
+    url: "https://thetirthanvalley.in/blog",
+    siteName: "Tirthan Valley",
+    type: "website",
+    images: [
+      {
+        url: "https://thetirthanvalley.in/images/main.webp",
+        width: 1200,
+        height: 630,
+        alt: "Tirthan Valley travel blog",
+      },
+    ],
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Tirthan Valley",
+    description:
+      "Tirthan Valley travel blog — trekking guides, local food, best time to visit, wildlife spotting tips & trip planning advice from local experts.",
+    images: ["https://thetirthanvalley.in/images/main.webp"],
+  },
+}
 
 export default function BlogPage() {
   return (
     <div className="container px-4 py-12 md:px-6 md:py-24">
       <div className="flex flex-col space-y-8">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog" },
+          ]}
+        />
         <div className="space-y-2">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
             Blog
@@ -84,36 +126,19 @@ export default function BlogPage() {
                 <h3 className="text-xl font-bold">Categories</h3>
                 <ul className="space-y-1">
                   <li>
-                    <Link
-                      href="#"
-                      className="text-muted-foreground hover:text-foreground"
-                    >
-                      Travel Tips (4)
-                    </Link>
+                    <span className="text-muted-foreground">
+                      Travel Tips ({blogPosts.filter((p) => p.category === "Travel Tips").length})
+                    </span>
                   </li>
                   <li>
-                    <Link
-                      href="#"
-                      className="text-muted-foreground hover:text-foreground"
-                    >
-                      Adventure Stories (3)
-                    </Link>
+                    <span className="text-muted-foreground">
+                      Adventure Stories ({blogPosts.filter((p) => p.category === "Adventure Stories").length})
+                    </span>
                   </li>
                   <li>
-                    <Link
-                      href="#"
-                      className="text-muted-foreground hover:text-foreground"
-                    >
-                      Local Culture (2)
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-muted-foreground hover:text-foreground"
-                    >
-                      Wildlife (1)
-                    </Link>
+                    <span className="text-muted-foreground">
+                      Local Culture ({blogPosts.filter((p) => p.category === "Local Culture").length})
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -154,7 +179,7 @@ export default function BlogPage() {
   );
 }
 
-function BlogPostCard({ post }: { post: BlogPost }) {
+function BlogPostCard({ post }: { post: typeof blogPosts[number] }) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-[200px]">
@@ -192,34 +217,3 @@ function BlogPostCard({ post }: { post: BlogPost }) {
     </Card>
   );
 }
-
-interface BlogPost {
-  title: string;
-  slug: string;
-  date: string;
-  image: string;
-  excerpt: string;
-  category: string;
-}
-
-const blogPosts: BlogPost[] = [
-  {
-    title: "Top 5 Treks in Tirthan Valley",
-    slug: "top-5-treks-in-tirthan-valley",
-    date: " April 7, 2025",
-    image: "/images/blog-trek.jpg",
-    excerpt:
-      "Tirthan Valley offers some of the most breathtaking treks in the Himalayas. From the Great Himalayan National Park to the serene Serolsar Lake, here are the top 5 treks you must try.",
-    category: "Adventure Stories",
-  },
-
-  {
-    title: "Best Time to Visit Tirthan Valley",
-    slug: "best-time-to-visit-tirthan-valley",
-    date: "April 7, 2025",
-    image: "/images/blog-seasons.jpg",
-    excerpt:
-      "Planning a trip to Tirthan Valley? Learn about the best seasons to visit and what each time of year has to offer for different activities and experiences.",
-    category: "Travel Tips",
-  },
-];

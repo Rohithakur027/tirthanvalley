@@ -1,14 +1,46 @@
+import type { Metadata } from "next"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Clock, MapPin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { activities } from "@/data/activitydata"
+import Breadcrumb from "@/components/Breadcrumb"
+
+export const metadata: Metadata = {
+  title: "Activities & Experiences | Tirthan Valley",
+  description:
+    "Things to do in Tirthan Valley — trekking in GHNP, trout fishing, riverside camping, village tours & more adventure activities. Plan your trip activities.",
+  alternates: {
+    canonical: "https://thetirthanvalley.in/explore/activities",
+  },
+  openGraph: {
+    title: "Activities & Experiences | Tirthan Valley",
+    description:
+      "Things to do in Tirthan Valley — trekking in GHNP, trout fishing, riverside camping, village tours & more adventure activities.",
+    url: "https://thetirthanvalley.in/explore/activities",
+    siteName: "Tirthan Valley",
+    type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Activities & Experiences | Tirthan Valley",
+    description:
+      "Things to do in Tirthan Valley — trekking in GHNP, trout fishing, riverside camping, village tours & more adventure activities.",
+  },
+}
 
 export default function ActivitiesPage() {
   return (
     <div className="container px-4 py-12 md:px-6 md:py-24">
       <div className="flex flex-col space-y-8">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Activities & Experiences" },
+          ]}
+        />
         <div className="space-y-2">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">Activities & Experiences</h1>
           <p className="text-muted-foreground max-w-3xl">
@@ -84,8 +116,8 @@ interface ActivityCardProps {
     heroimage: string
     location: string
     duration: string
-    category: "Adventure" | "Nature & Wildlife" | "Cultural"
-    difficulty?: "Easy" | "Moderate" | "Challenging"
+    category: string
+    difficulty?: string
     shortDescription: string
   }
 }
@@ -96,7 +128,7 @@ function ActivityCard({ activity }: ActivityCardProps) {
       <div className="relative h-[200px]">
         <Image
           src={activity.heroimage || "/placeholder.svg"}
-          alt={activity.title}
+          alt={`${activity.title} activity in Tirthan Valley Himachal Pradesh`}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />

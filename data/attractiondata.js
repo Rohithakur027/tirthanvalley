@@ -4,7 +4,6 @@ export const attractions = [
     slug: "great-himalayan-national-park",
     location: "Kullu District, Himachal Pradesh",
     heroimage: "/images/attraction-ghnp-01.webp",
-
     images: [
       "/images/attraction-ghnp-01.webp",
       "/images/ghnp02.webp",
@@ -13,30 +12,30 @@ export const attractions = [
       "/images/attraction-ghnp-02.webp",
     ],
     description: [
-      "The Great Himalayan National Park (GHNP) is a UNESCO World Heritage Site located in the Kullu district of Himachal Pradesh. Spanning over 754 square kilometers, this pristine wilderness is home to a rich biodiversity that includes rare and endangered species of flora and fauna.",
-      "The park encompasses four valleys - Tirthan, Sainj, Jiwa Nal, and Parvati - each offering unique landscapes and trekking opportunities. The terrain varies from lush green meadows to alpine pastures, dense forests, and snow-capped peaks, with elevations ranging from 1,500 to 6,000 meters above sea level.",
-      "GHNP is a paradise for nature lovers, wildlife enthusiasts, and trekkers. The park's remote location and limited accessibility have helped preserve its natural beauty and ecological significance. Visitors can explore the park through various trekking routes, ranging from easy day hikes to challenging multi-day expeditions.",
+      "The Great Himalayan National Park is a UNESCO World Heritage treasure in Kullu, offering world-class wilderness trails and Himalayan biodiversity.",
+      "Four iconic valleys—Tirthan, Sainj, Jiwa Nal, and Parvati—offer lush meadows, alpine forests, and snow-peaked vistas across 754 square kilometers. Elevations range from 1,500m to 6,000m.",
+      "It’s adored by nature lovers and trekkers seeking pristine beauty, rare wildlife, and some of the finest trekking in Himachal.",
     ],
     highlights: [
       {
         title: "UNESCO World Heritage Site",
         description:
-          "Recognized for its outstanding universal value and biodiversity conservation efforts.",
+          "Global recognition for biodiversity conservation and natural wonder.",
       },
       {
         title: "Rich Biodiversity",
         description:
-          "Home to over 375 fauna species and 1,200 plant species, many of which are rare and endangered.",
+          "Home to >375 animal and 1,200+ plant species, including rare Himalayan fauna.",
       },
       {
         title: "Pristine Wilderness",
         description:
-          "Untouched landscapes with dense forests, alpine meadows, and snow-capped peaks.",
+          "Dramatic alpine meadows, lush forests, and snow-capped peaks.",
       },
       {
-        title: "Trekking Paradise",
+        title: "Top Trekking Destination",
         description:
-          "Offers various trekking routes through breathtaking landscapes and diverse ecosystems.",
+          "Both easy hikes and challenging multi-day routes await explorers.",
       },
     ],
     activities: [
@@ -70,18 +69,16 @@ export const attractions = [
     visitingHours: "6:00 AM to 6:00 PM (Entry permitted until 3:00 PM)",
     bestTimeToVisit: "April to June and September to November",
     entryFee:
-      "₹200 for Indians, ₹400 for Foreign Nationals (Additional charges for guides and permits)",
+      "₹200 for Indians, ₹400 for Foreign Nationals (Extra for guides/permits)",
     tips: [
-      "Hire a local guide for the best experience and safety",
-      "Obtain necessary permits before entering the park",
-      "Carry warm clothes as temperatures can drop significantly",
-      "Pack sufficient water and snacks for trekking",
-      "Respect wildlife and maintain silence while in the park",
-      "Follow 'Leave No Trace' principles and avoid littering",
+      "Hire local guides for safe trekking.",
+      "Arrange permits before your visit.",
+      "Bring warm layers for changing weather.",
+      "Pack water and snacks for long hikes.",
+      "Respect wildlife and carry out all litter.",
     ],
     officialWebsite: "https://greathimalayannationalpark.com/",
-    mapUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107878.37415803732!2d77.44999999999999!3d31.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f9dbcb2c1df9%3A0x7db0fc7c71b0f6e6!2sGreat%20Himalayan%20National%20Park!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin",
+    mapUrl: "https://www.google.com/maps/embed?...",
     nearbyAttractions: [
       {
         title: "Tirthan River",
@@ -102,7 +99,22 @@ export const attractions = [
         distance: "30 km",
       },
     ],
+    // JSON-LD Fields
+    name: "Great Himalayan National Park – UNESCO World Heritage Site & Trekking Paradise",
+    optimized_description:
+      "GHNP is a globally recognized sanctuary in Banjar, Kullu—offering pristine Himalayan treks, rare wildlife, and rich biodiversity.",
+    locality: "Banjar",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.7,
+    longitude: 77.45,
+    address: {
+      addressLocality: "Banjar",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
   },
+
   {
     title: "Jalori Pass",
     slug: "jalori-pass",
@@ -115,29 +127,26 @@ export const attractions = [
       "/images/attraction-jalori-04.webp",
     ],
     description: [
-      "Jalori Pass, situated at an altitude of 3,120 meters (10,236 feet), is one of the lowest mountain passes in the Himalayas. Located in the Kullu district of Himachal Pradesh, it serves as a gateway to the Serolsar Lake and Raghupur Fort.",
-      "The pass offers breathtaking panoramic views of the surrounding mountains and valleys. The journey to Jalori Pass itself is an adventure, with winding roads cutting through dense forests and offering glimpses of the majestic Himalayas.",
-      "Jalori Pass is accessible by road, making it one of the more easily reachable high-altitude passes in the region. It's a popular destination for both day trips and as a starting point for treks to nearby attractions.",
+      "Jalori Pass (3,120m) is the region’s most famous motorable Himalayan mountain pass.",
+      "Located above Jibhi, it’s celebrated for sweeping views, wildflowers, and as a trailhead to Serolsar Lake and Raghupur Fort.",
+      "Accessible much of the year, it attracts road trippers and trekking enthusiasts alike.",
     ],
     highlights: [
       {
-        title: "Scenic Beauty",
-        description:
-          "Panoramic views of the Himalayas and surrounding valleys.",
+        title: "Scenic Mountain Pass",
+        description: "Dramatic 360° Himalayan vistas and abundant wildflowers.",
       },
       {
-        title: "Accessible High Pass",
-        description: "One of the few high-altitude passes accessible by road.",
+        title: "Accessible by Road",
+        description: "A rare pass you can reach by vehicle in Himachal.",
       },
       {
-        title: "Trekking Hub",
-        description:
-          "Starting point for treks to Serolsar Lake and Raghupur Fort.",
+        title: "Popular Trekking Hub",
+        description: "Start here for hikes to Serolsar Lake and Raghupur Fort.",
       },
       {
         title: "Rich Biodiversity",
-        description:
-          "Surrounded by dense forests with diverse flora and fauna.",
+        description: "Surrounded by rhododendron, oak, and conifer forests.",
       },
     ],
     activities: [
@@ -147,19 +156,17 @@ export const attractions = [
       "Camping",
       "Picnicking",
     ],
-    visitingHours: "Open 24 hours (Best visited during daylight)",
-    bestTimeToVisit: "May to October (Closed during heavy snowfall in winter)",
+    visitingHours: "Open 24 hours (Best during daylight)",
+    bestTimeToVisit: "May to October (Closed in winter snow)",
     entryFee: "No entry fee",
     tips: [
-      "Check road conditions before traveling, especially during monsoon and winter",
-      "Carry warm clothes as it can get chilly even in summer",
-      "Start early if planning to trek to Serolsar Lake or Raghupur Fort",
-      "Carry sufficient water and snacks",
-      "Be prepared for altitude sickness if you're not acclimatized",
+      "Check road status, especially during monsoon/snow.",
+      "Dress warmly—it’s cold year-round.",
+      "Arrive early for popular treks.",
+      "Hydrate and carry supplies.",
     ],
     officialWebsite: null,
-    mapUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13483.204673124224!2d77.38!3d31.53!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f7e3f367bb3b%3A0x44e2a0a8a34a7dc7!2sJalori%20Pass!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin",
+    mapUrl: "https://www.google.com/maps/embed?...",
     nearbyAttractions: [
       {
         title: "Serolsar Lake",
@@ -180,7 +187,22 @@ export const attractions = [
         distance: "15 km",
       },
     ],
+    // JSON-LD Fields
+    name: "Jalori Pass – Himalaya’s Scenic High-Altitude Gateway",
+    optimized_description:
+      "Jalori Pass above Jibhi is the most accessible high-altitude pass in Kullu, drawing trekkers and road trippers to iconic views and alpine trails.",
+    locality: "Jibhi",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.6437,
+    longitude: 77.3531,
+    address: {
+      addressLocality: "Jibhi",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
   },
+
   {
     title: "Serolsar Lake",
     slug: "serolsar-lake",
@@ -193,28 +215,28 @@ export const attractions = [
       "/images/attraction-serolsar-04.webp",
     ],
     description: [
-      "Serolsar Lake is a serene high-altitude lake nestled amidst dense forests, located about 5 kilometers from Jalori Pass in the Kullu district of Himachal Pradesh. Situated at an elevation of 3,100 meters (10,170 feet), this pristine lake is surrounded by lush meadows and towering trees.",
-      "The lake holds religious significance for the local people, who believe it to be the abode of the goddess Budhi Nagin. A small temple dedicated to the goddess stands near the lake, adding to its spiritual aura.",
-      "The trek to Serolsar Lake from Jalori Pass is relatively easy and takes about 2-3 hours through a beautiful forest trail. The tranquil environment, crystal-clear waters, and the surrounding natural beauty make it a perfect destination for nature lovers and those seeking peace away from the hustle and bustle of city life.",
+      "Serolsar Lake is a tranquil, crystal-clear lake surrounded by dense forests and alpine meadows, located just 5 km trek from Jalori Pass.",
+      "It is revered as the home of the goddess Budhi Nagin and features a peaceful temple on its banks.",
+      "Ideal for gentle forest treks, birdwatching, and photography in an unspoiled setting.",
     ],
     highlights: [
       {
-        title: "Pristine Beauty",
+        title: "High-Altitude Serenity",
         description:
-          "Crystal-clear waters surrounded by dense forests and meadows.",
+          "Calm, clear waters surrounded by forest and wide meadows.",
       },
       {
-        title: "Spiritual Significance",
+        title: "Sacred Site",
         description:
-          "Home to the temple of goddess Budhi Nagin, revered by locals.",
+          "Ancient Budhi Nagin temple attracts devotees and culture lovers.",
       },
       {
-        title: "Easy Trek",
-        description: "Accessible via a moderate 5 km trek from Jalori Pass.",
+        title: "Easy Forest Trek",
+        description: "Gentle, scenic 5 km walk from Jalori Pass.",
       },
       {
-        title: "Rich Biodiversity",
-        description: "Diverse flora and fauna in the surrounding forests.",
+        title: "Biodiversity Hotspot",
+        description: "Rich birdlife and medicinal flora en route.",
       },
     ],
     activities: [
@@ -224,19 +246,18 @@ export const attractions = [
       "Meditation",
       "Picnicking",
     ],
-    visitingHours: "Daylight hours (Best visited between 8:00 AM to 5:00 PM)",
-    bestTimeToVisit: "May to October (Avoid during heavy rainfall and winter)",
+    visitingHours: "Daylight hours (8:00 AM to 5:00 PM)",
+    bestTimeToVisit: "May to October (Avoid monsoon/winter)",
     entryFee: "No entry fee",
     tips: [
-      "Start early from Jalori Pass to have ample time at the lake",
-      "Carry sufficient water and snacks as there are no shops near the lake",
-      "Respect the religious sentiments associated with the lake",
-      "Do not litter and help maintain the pristine environment",
-      "Wear comfortable trekking shoes as the trail can be slippery",
+      "Begin trek early for soft light at the lake.",
+      "Carry all essentials—no shops nearby.",
+      "Respect religious customs at the temple.",
+      "Do not litter—leave the area pristine.",
+      "Wear sturdy footwear for uneven trail.",
     ],
     officialWebsite: null,
-    mapUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.7!2d77.4!3d31.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f7c3b8b3b3b3%3A0x3b3b3b3b3b3b3b3b!2sSerolsar%20Lake!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin",
+    mapUrl: "https://www.google.com/maps/embed?...",
     nearbyAttractions: [
       {
         title: "Jalori Pass",
@@ -257,6 +278,20 @@ export const attractions = [
         distance: "20 km",
       },
     ],
+    // JSON-LD Fields
+    name: "Serolsar Lake – Forest Trek & Sacred Alpine Waters",
+    optimized_description:
+      "Serolsar Lake is a peaceful, spiritual destination near Jalori Pass—famed for its clarity, gentle trekking, and untouched Himachali alpine settings.",
+    locality: "Near Jalori Pass",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.55,
+    longitude: 77.4,
+    address: {
+      addressLocality: "Near Jalori Pass",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
   },
 
   {
@@ -271,39 +306,41 @@ export const attractions = [
       "/images/attraction-raghupur-04.webp",
     ],
     description: [
-      "Raghupur Fort is an ancient fort located at an altitude of around 3,540 meters, a short trek from Jalori Pass. Though now in ruins, the site offers breathtaking 360-degree views of the snow-clad Himalayan ranges and valleys.",
-      "Surrounded by dense oak and rhododendron forests, the trek to Raghupur Fort is a serene journey filled with panoramic beauty and chirping birds. The fort is believed to have been built by the rulers of Mandi to fend off invaders.",
-      "It's a perfect blend of history, adventure, and natural beauty, making it a must-visit for explorers and nature lovers.",
+      "Raghupur Fort ruins stand on a high ridge above Jalori Pass, offering breathtaking 360° snow-peak views.",
+      "The short trek passes through dense oak and rhododendron forests and opens to wide grasslands with Himalayan vistas.",
+      "A favorite for explorers, history lovers, and panoramic photographers.",
     ],
     highlights: [
       {
         title: "Panoramic Views",
-        description: "Offers incredible vistas of the Himalayan snow ranges.",
+        description: "Unmatched Himalayan vistas from the ruined fort.",
       },
       {
-        title: "Historic Ruins",
-        description:
-          "Believed to be built by Mandi kings to watch over the valley.",
+        title: "Heritage Site",
+        description: "Historic stronghold built by the kings of Mandi.",
       },
       {
-        title: "Forest Trek",
-        description: "Scenic trek through oak and rhododendron forests.",
+        title: "Scenic Forest Trek",
+        description: "Beautiful oak and rhododendron forests en route.",
       },
       {
-        title: "Photography Spot",
-        description:
-          "Excellent spot for wide-angle shots and nature photography.",
+        title: "Photo Magnet",
+        description: "Best spot for sunrise & sunset panoramas.",
       },
     ],
-    activities: ["Trekking", "Photography", "Bird Watching", "Exploration"],
+    activities: [
+      "Trekking",
+      "Photography",
+      "Bird Watching",
+      "Heritage Exploration",
+    ],
     visitingHours: "Daylight hours",
     bestTimeToVisit: "April to October",
     entryFee: "No entry fee",
     tips: [
-      "Start early to return before sunset",
-      "Carry water and some snacks",
-      "Wear trekking shoes for the forest trail",
-      "Don't expect any shops at the top",
+      "Start trek early to enjoy sunlight and return safely.",
+      "Carry water—no shops on the route.",
+      "Trekking shoes required for rocky paths.",
     ],
     officialWebsite: null,
     mapUrl: "https://www.google.com/maps?q=raghupur+fort",
@@ -321,6 +358,20 @@ export const attractions = [
         distance: "8 km",
       },
     ],
+    // JSON-LD Fields
+    name: "Raghupur Fort – Ancient Hilltop Ruins with Iconic Views",
+    optimized_description:
+      "Raghupur Fort above Jalori Pass offers panoramic Himalayan scenes from historic ruins, a short trek through wild forest in Kullu.",
+    locality: "Near Jalori Pass",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.58,
+    longitude: 77.4,
+    address: {
+      addressLocality: "Near Jalori Pass",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
   },
 
   {
@@ -334,24 +385,22 @@ export const attractions = [
       "/images/attraction-chehnikothi-03.webp",
     ],
     description: [
-      "Chehni Kothi is a majestic tower temple made of stone and wood, situated in the traditional village of Chehni. It stands tall as an example of ancient Himachali Kath-Kuni architecture.",
-      "Built around the 17th century, the structure was once the fortified residence of a local king. It's now a temple complex dedicated to Shringa Rishi, a revered sage in the Ramayana.",
-      "A moderate uphill trek through scenic forests leads you to this historical monument, surrounded by traditional Himachali homes and incredible mountain views.",
+      "Chehni Kothi is a majestic tower built in Kath-Kuni style wood and stone, rising above the ancient village of Chehni in Jibhi Valley.",
+      "Dating to the 17th century, it's now a temple complex honoring Shringa Rishi and a unique cultural monument.",
+      "Trek through beautiful forests and step back in time among traditional Himachali homes.",
     ],
     highlights: [
       {
         title: "Kath-Kuni Architecture",
-        description:
-          "A tall stone-and-wood tower showcasing ancient building style.",
+        description: "Impressive traditional tower and temple in wood/stone.",
       },
       {
-        title: "Spiritual Significance",
-        description: "Temple dedicated to Shringa Rishi, the local deity.",
+        title: "Spiritual Center",
+        description: "Sacred to Shringa Rishi, revered in Himachali lore.",
       },
       {
-        title: "Cultural Experience",
-        description:
-          "Insight into old Himachali village lifestyle and customs.",
+        title: "Living Heritage",
+        description: "Experience authentic village life and timeless views.",
       },
     ],
     activities: ["Trekking", "Photography", "Cultural Exploration"],
@@ -359,13 +408,13 @@ export const attractions = [
     bestTimeToVisit: "March to November",
     entryFee: "No entry fee",
     tips: [
-      "Wear sturdy shoes for uphill trail",
-      "Respect the local customs, especially inside temple premises",
-      "Ideal for photography enthusiasts",
+      "Wear good shoes for uphill walking.",
+      "Respect local etiquette at temple and village.",
+      "Perfect spot for heritage photography.",
     ],
     officialWebsite: null,
     mapUrl:
-      "https://www.google.com/maps/place/Chehni+Kothi/@31.6275987,77.3554832,727m/data=!3m1!1e3!4m6!3m5!1s0x3905ae0c884e3c05:0xdd6d2796807a109b!8m2!3d31.6276273!4d77.3580148!16s%2Fg%2F1hc1x1ln6?entry=ttu&g_ep=EgoyMDI1MDQwNi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+      "https://www.google.com/maps/place/Chehni+Kothi/@31.6275987,77.3554832,...",
     nearbyAttractions: [
       {
         title: "Jibhi",
@@ -374,6 +423,20 @@ export const attractions = [
         distance: "8 km",
       },
     ],
+    // JSON-LD Fields
+    name: "Chehni Kothi – Tower Temple and Himalayan Village Heritage",
+    optimized_description:
+      "Chehni Kothi in Jibhi Valley is a Himachali architectural icon—ancient, spiritual, and rich with traditional culture.",
+    locality: "Jibhi Valley",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.6276,
+    longitude: 77.358,
+    address: {
+      addressLocality: "Jibhi Valley",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
   },
 
   {
@@ -388,33 +451,32 @@ export const attractions = [
       "/images/attraction-jibhi-04.webp",
     ],
     description: [
-      "Jibhi is a peaceful hamlet located in the Banjar Valley, known for its charming wooden cottages, gentle streams, and lush greenery.",
-      "It serves as a great base for exploring nearby attractions like Chehni Kothi, Jalori Pass, and Serolsar Lake. The town offers cozy homestays and scenic walking trails through forests and streams.",
-      "Jibhi's blend of serenity and accessibility makes it a favorite destination for solo travelers, couples, and backpackers.",
+      "Jibhi is a quaint riverside village in Banjar Valley, famous for its wooden cottages, sparkling trout streams, and peaceful ambiance.",
+      "It’s the ideal base for exploring Chehni Kothi, Jalori Pass, and Serolsar Lake, as well as experiencing Himachali cuisine and cafe culture.",
+      "A perfect choice for solo travelers, families, and digital detox getaways.",
     ],
     highlights: [
       {
-        title: "Wooden Architecture",
-        description: "Charming traditional houses and homestays made of wood.",
+        title: "Wooden Homestays",
+        description: "Charming local cottages and riverside stays.",
       },
       {
-        title: "Tranquil Environment",
-        description: "Peaceful, slow-paced village life near nature.",
+        title: "Serenity & Nature",
+        description: "Laid-back, peaceful ambiance with lush landscapes.",
       },
       {
-        title: "Café Culture",
-        description:
-          "Hip cafes and bakeries emerging amidst traditional vibes.",
+        title: "Emerging Cafe Scene",
+        description: "Boutique cafes with views and fresh local fare.",
       },
     ],
     activities: ["Nature Walks", "Photography", "Cafe Hopping", "Swimming"],
     visitingHours: "Open 24 hours",
-    bestTimeToVisit: "Throughout the year (avoid monsoon)",
+    bestTimeToVisit: "Year-round (avoid monsoon)",
     entryFee: "No entry fee",
     tips: [
-      "Try the local trout fish",
-      "Stay in a riverside cottage for best experience",
-      "Ideal for digital detox and slow travel",
+      "Sample fresh trout fish at local eateries.",
+      "Book a riverside cottage for best views.",
+      "Disconnect from devices for a true break.",
     ],
     officialWebsite: null,
     mapUrl: "https://www.google.com/maps?q=jibhi",
@@ -432,6 +494,20 @@ export const attractions = [
         distance: "12 km",
       },
     ],
+    // JSON-LD Fields
+    name: "Jibhi – Riverside Village, Wooden Stays, and Nature Gateway",
+    optimized_description:
+      "Jibhi, nestled in Banjar Valley, is a tranquil base for exploring Tirthan’s top sites, known for cafes, homestays, and natural serenity.",
+    locality: "Banjar Valley",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.5775,
+    longitude: 77.3675,
+    address: {
+      addressLocality: "Banjar Valley",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
   },
 
   {
@@ -447,23 +523,22 @@ export const attractions = [
       "/images/attraction-sharchi-05.webp",
     ],
     description: [
-      "Sharchi is a hidden gem perched at the top of a mountain in Tirthan Valley. It's one of the most traditional villages, known for its wooden homes built in Kath-Kuni style and stunning views of snow-covered peaks.",
-      "The village is surrounded by meadows and deodar forests, making it an ideal place to soak in authentic Himachali culture and natural beauty.",
-      "It is the starting point for treks like Rolla and Niharni in the Great Himalayan National Park buffer zone.",
+      "Sharchi is a secluded hamlet perched atop Tirthan Valley, famed for Kath-Kuni wooden homes and panoramic mountain views.",
+      "Surrounded by meadows and deodar forests, this authentic village is the start of many treks within the GHNP buffer zone.",
+      "A rare escape for those seeking peace, tradition, and offbeat Himachal experiences.",
     ],
     highlights: [
       {
-        title: "Traditional Himachali Village",
-        description:
-          "Experience local life in wooden houses with carved architecture.",
+        title: "Traditional Himachali Homes",
+        description: "Unique mountain architecture and village charm.",
       },
       {
-        title: "Panoramic Views",
-        description: "Unobstructed vistas of the valley and distant mountains.",
+        title: "Dramatic Vistas",
+        description: "Unobstructed valley and Himalayan viewpoints.",
       },
       {
-        title: "Secluded Escape",
-        description: "Very few tourists; perfect for solitude seekers.",
+        title: "Isolation",
+        description: "Low tourism, best for solitude and reflection.",
       },
     ],
     activities: ["Cultural Exploration", "Hiking", "Photography", "Camping"],
@@ -471,9 +546,9 @@ export const attractions = [
     bestTimeToVisit: "March to November",
     entryFee: "No entry fee",
     tips: [
-      "Pack warm clothes even in summer",
-      "Local homestays available",
-      "Best explored on foot",
+      "Bring warm layers, even in summer.",
+      "Book local homestays for immersive experience.",
+      "Roam the village by foot to take in the views.",
     ],
     officialWebsite: null,
     mapUrl: "https://www.google.com/maps?q=sharchi+village",
@@ -485,6 +560,108 @@ export const attractions = [
         distance: "15 km",
       },
     ],
+    // JSON-LD Fields
+    name: "Sharchi Village – Secluded Mountain Hamlet & Trekking Base",
+    optimized_description:
+      "Sharchi is a mountain-top gem in Tirthan Valley, ideal for solitude, scenery, and traditional Himachali hospitality.",
+    locality: "Tirthan Valley",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.65,
+    longitude: 77.3,
+    address: {
+      addressLocality: "Tirthan Valley",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
+  },
+
+  {
+    title: "Tirthan River",
+    slug: "tirthan-river",
+    location: "Tirthan Valley, Kullu District, Himachal Pradesh",
+    heroimage: "/images/tirthan-river01.webp",
+    images: [
+      "/images/tirthan-river01.webp",
+      "/images/tirthan-river-02.webp",
+      "/images/river-crossing.webp",
+      "/images/riverside-camping.webp",
+    ],
+    description: [
+      "The Tirthan River is the lifeline of Tirthan Valley, originating from the glacial springs of Hanskund deep inside the Great Himalayan National Park. The river flows through dense forests, rocky gorges, and traditional Himachali villages before merging with the Beas River at Larji.",
+      "The river is famous for its crystal-clear waters, which are home to brown and rainbow trout — making it one of the best trout fishing destinations in the Indian Himalayas. Anglers from across the country visit to try their hand at catch-and-release fishing in these pristine waters.",
+      "Beyond fishing, the Tirthan River offers numerous riverside camping spots, opportunities for river crossing adventures, and simply peaceful spots to sit and enjoy the sound of flowing water against a backdrop of towering mountains. Many of the valley's best homestays and cottages are located along its banks.",
+    ],
+    highlights: [
+      {
+        title: "Crystal-Clear Glacial Waters",
+        description: "Originating from Hanskund in GHNP with exceptionally pure water.",
+      },
+      {
+        title: "Premier Trout Fishing",
+        description: "Famous for brown and rainbow trout — one of India's best fishing rivers.",
+      },
+      {
+        title: "Riverside Camping",
+        description: "Scenic camping spots throughout the valley along its banks.",
+      },
+      {
+        title: "River Crossing Adventures",
+        description: "Exciting river crossing activities for adventure seekers.",
+      },
+    ],
+    activities: [
+      "Trout Fishing",
+      "Riverside Camping",
+      "River Crossing",
+      "Photography",
+      "Nature Walks",
+    ],
+    visitingHours: "Open 24 hours",
+    bestTimeToVisit: "March to June and September to November",
+    entryFee: "Free (fishing permits required separately: ₹100-500/day)",
+    tips: [
+      "Obtain fishing permits from the HP Fisheries Department before angling.",
+      "Best fishing spots are between Gushaini and Nagini villages.",
+      "River levels rise significantly during monsoon (July-August) — exercise caution.",
+      "Early morning offers the best light for photography along the river.",
+      "Carry water shoes if you plan to wade into the river.",
+    ],
+    officialWebsite: null,
+    mapUrl: "https://www.google.com/maps?q=tirthan+river",
+    nearbyAttractions: [
+      {
+        title: "Great Himalayan National Park",
+        slug: "great-himalayan-national-park",
+        image: "/images/attraction-ghnp-01.webp",
+        distance: "5 km",
+      },
+      {
+        title: "Chehni Kothi",
+        slug: "chehni-kothi",
+        image: "/images/attraction-chehnikothi-01.webp",
+        distance: "15 km",
+      },
+      {
+        title: "Serolsar Lake",
+        slug: "serolsar-lake",
+        image: "/images/serolsar.webp",
+        distance: "25 km",
+      },
+    ],
+    name: "Tirthan River – Crystal-Clear Glacial River & Trout Fishing Paradise",
+    optimized_description:
+      "Tirthan River is the lifeline of Tirthan Valley — crystal-clear glacial waters famous for trout fishing, riverside camping & scenic beauty in Himachal Pradesh.",
+    locality: "Tirthan Valley",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.635,
+    longitude: 77.345,
+    address: {
+      addressLocality: "Tirthan Valley",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
   },
 
   {
@@ -498,22 +675,22 @@ export const attractions = [
       "/images/attraction-shairopa-02.webp",
     ],
     description: [
-      "Sai Ropa, also spelled Shairopa, is a small settlement and the gateway to the Great Himalayan National Park. It houses the GHNP Orientation and Learning Center, offering insight into the park's ecology and wildlife.",
-      "It's a peaceful location with pine forests, located near the banks of the Tirthan River, and is ideal for nature walks, short hikes, and bird watching.",
-      "Visitors often use Sai Ropa as a base to explore the GHNP and nearby villages.",
+      "Sai Ropa is the gateway to GHNP and the location of the official Orientation and Learning Center, set amid pine forests near the Tirthan River.",
+      "It’s a tranquil base for educational nature walks, birdwatching, and day hikes to the Park and local villages.",
+      "Ideal for acclimatization and learning about Tirthan’s unique ecology.",
     ],
     highlights: [
       {
         title: "GHNP Learning Center",
-        description: "Official orientation hub for GHNP visitors.",
+        description: "Official orientation base for all park visitors.",
       },
       {
-        title: "Forest Stay",
-        description: "Cottages and guest houses nestled among pine trees.",
+        title: "Forest Guesthouses",
+        description: "Stay amidst pine groves near the river.",
       },
       {
-        title: "Tranquil Nature",
-        description: "Great for bird watching and nature photography.",
+        title: "Optimal Birdwatching",
+        description: "See rare species and streams teeming with life.",
       },
     ],
     activities: [
@@ -526,9 +703,9 @@ export const attractions = [
     bestTimeToVisit: "April to June, September to November",
     entryFee: "Minimal entry for GHNP center",
     tips: [
-      "Attend the GHNP orientation session before heading inside the park",
-      "Good place to acclimatize",
-      "Visit early to catch local wildlife activity",
+      "Book orientation before heading into the park.",
+      "Ideal for learning about local flora & fauna.",
+      "Visit early for best wildlife and bird sightings.",
     ],
     officialWebsite: "https://www.greathimalayannationalpark.org",
     mapUrl: "https://www.google.com/maps?q=sai+ropa+tirthan",
@@ -540,6 +717,20 @@ export const attractions = [
         distance: "10 km",
       },
     ],
+    // JSON-LD Fields
+    name: "Sai Ropa – GHNP Learning Center & Riverside Forest Stay",
+    optimized_description:
+      "Sai Ropa in Tirthan Valley is the official entry and knowledge hub for GHNP, set among pine forests with riverside trails.",
+    locality: "Tirthan Valley",
+    region: "Kullu",
+    country: "IN",
+    latitude: 31.65,
+    longitude: 77.34,
+    address: {
+      addressLocality: "Tirthan Valley",
+      addressRegion: "Kullu",
+      addressCountry: "IN",
+    },
   },
 ];
 

@@ -5,8 +5,31 @@ import Image from "next/image"
 import Link from "next/link"
 import { activities } from "@/data/activitydata"
 import ImageGallery from "../../attractions/[slug]/imageGallery"
+import Breadcrumb from "@/components/Breadcrumb"
 
-//  SERVER COMPONENT FUNCTIONS - Generate static paths at build time
+const metaDescriptions: Record<string, string> = {
+  "trekking-ghnp":
+    "Trekking in Great Himalayan National Park from Tirthan Valley — Tirthan Trek, Sainj Valley Trek, Raktisar Trek. Routes, difficulty levels, permits & packing guide.",
+  "trout-fishing":
+    "Trout fishing in Tirthan River — catch brown & rainbow trout in crystal-clear Himalayan waters. Permits, best spots, season, equipment & guided fishing trips.",
+  "riverside-camping":
+    "Riverside camping in Tirthan Valley — camp by the Tirthan River with bonfires, stargazing & nature walks. Best campsites, costs, what to bring & booking guide.",
+  "village-tours":
+    "Village tours in Tirthan Valley — visit Gushaini, Nagini, Shoja & traditional Himachali villages. Experience local culture, wooden architecture & warm hospitality.",
+  "bird-watching":
+    "Bird watching in Tirthan Valley & GHNP — spot 300+ species including Western Tragopan, Himalayan Monal, Crested Kingfisher & Asian Paradise Flycatcher. Best trails, seasons & tips.",
+  "jalori-pass-trek":
+    "Jalori Pass trek from Tirthan Valley — moderate day trek to 3,120m with panoramic Himalayan views. Routes to Serolsar Lake & Raghupur Fort, best season & what to pack.",
+  "cooking-classes":
+    "Himachali cooking classes in Tirthan Valley — learn to make Siddu, Babru, Aktori & trout curry at local homestays with village cooks. Hands-on 2-3 hour sessions.",
+  "photography-tours":
+    "Photography tours in Tirthan Valley — capture GHNP landscapes, Himalayan wildlife, traditional villages & river valleys. Best spots, golden hour tips & seasonal guide.",
+  "nature-learning-center-walk":
+    "GHNP Nature Learning Center walk at Sai Ropa, Tirthan Valley — interactive ecology exhibits, animal models & forest displays. Easy 1-2 hour family-friendly walk.",
+  "craft-workshops":
+    "Traditional Himachali craft workshops in Tirthan Valley — learn wool weaving, wood carving & basket making from village artisans. Hands-on 2-4 hour sessions.",
+}
+
 export async function generateStaticParams() {
   return activities.map((activity) => ({
     slug: activity.slug,
@@ -17,7 +40,6 @@ type Params = {
   params: Promise<{ slug: string }>
 }
 
-//  SEO METADATA GENERATION - Runs on server for each page
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params
   const activity = activities.find((a) => a.slug === slug)
@@ -26,15 +48,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return {
       title: "Activity Not Found | Tirthan Valley",
       description: "This activity doesn't exist.",
-      robots: {
-        index: false,
-        follow: false,
-      },
+      robots: { index: false, follow: false },
     }
   }
 
-  const title = `${activity.title} - ${activity.category} in Tirthan Valley`
+  const title = `${activity.title} | Tirthan Valley`
   const description =
+    metaDescriptions[slug] ||
     activity.description?.[0]?.slice(0, 160) ||
     `Experience ${activity.title} in Tirthan Valley — ${activity.category} activity in the beautiful Himalayas.`
   const imageUrl = activity.heroimage || "/default-og-image.jpg"
@@ -54,20 +74,20 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: imageUrl,
+          url: `https://thetirthanvalley.in${imageUrl}`,
           width: 1200,
           height: 630,
-          alt: `${activity.title} - ${activity.category} in Tirthan Valley`,
+          alt: `${activity.title} in Tirthan Valley`,
         },
       ],
+      locale: "en_IN",
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [imageUrl],
+      images: [`https://thetirthanvalley.in${imageUrl}`],
     },
-    keywords: [activity.title, activity.category, "Tirthan Valley", "Himachal Pradesh", "Adventure", "Activities"],
   }
 }
 
@@ -75,18 +95,15 @@ function getActivityBySlug(slug: string) {
   return activities.find((activity) => activity.slug === slug)
 }
 
-
-//  MAIN SERVER COMPONENT - Handles static content and data fetching
 export default async function ActivityPage({ params }: Params) {
   const { slug } = await params
   const activity = getActivityBySlug(slug)
 
-  //  Handle not found case on server
   if (!activity) {
     return (
       <div className="container py-20 text-center">
         <h1 className="text-2xl font-bold mb-4">Activity not found</h1>
-        <p className="mb-8 text-gray-600 dark:text-gray-400">The activity you're looking for doesn't exist.</p>
+        <p className="mb-8 text-gray-600 dark:text-gray-400">The activity you&apos;re looking for doesn&apos;t exist.</p>
         <Button asChild>
           <Link href="/explore/activities">View all activities</Link>
         </Button>
@@ -94,10 +111,43 @@ export default async function ActivityPage({ params }: Params) {
     )
   }
 
+  const touristAttractionSchema = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    "name": activity.title,
+    "description": activity.shortDescription || activity.description?.[0]?.substring(0, 200),
+    "image": `https://thetirthanvalley.in${activity.heroimage}`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tirthan Valley",
+      "addressRegion": "Himachal Pradesh",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 31.638,
+      "longitude": 77.347
+    },
+    "isAccessibleForFree": true,
+    "publicAccess": true,
+    "touristType": ["Adventure seekers", "Nature lovers", "Families"]
+  }
+
   return (
     <div className="bg-white dark:bg-gray-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(touristAttractionSchema) }}
+      />
       <div className="container py-12 md:py-24">
-        {/*  STATIC NAVIGATION - Rendered on server */}
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Activities", href: "/explore/activities" },
+            { label: activity.title },
+          ]}
+        />
+
         <Button asChild variant="ghost" className="mb-8 hover:bg-gray-100 dark:hover:bg-gray-800">
           <Link href="/explore/activities" className="flex items-center gap-2">
             <ArrowLeft className="h-4 w-4" />
@@ -106,9 +156,7 @@ export default async function ActivityPage({ params }: Params) {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/*  MAIN CONTENT - All static, rendered on server */}
           <div className="lg:col-span-2 space-y-8">
-            {/*  STATIC HEADER */}
             <div>
               <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 mb-4">
                 {activity.category}
@@ -132,10 +180,8 @@ export default async function ActivityPage({ params }: Params) {
               </div>
             </div>
 
-            {/* CLIENT COMPONENT - Only interactive image gallery */}
             <ImageGallery images={activity.images} title={activity.title} />
 
-            {/* STATIC DESCRIPTION */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">About This Activity</h2>
               <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -147,7 +193,6 @@ export default async function ActivityPage({ params }: Params) {
               </div>
             </div>
 
-            {/*STATIC HIGHLIGHTS */}
             {activity.highlights && (
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Highlights</h2>
@@ -169,7 +214,6 @@ export default async function ActivityPage({ params }: Params) {
               </div>
             )}
 
-            {/* STATIC ITINERARY */}
             {activity.itinerary && (
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Itinerary</h2>
@@ -188,14 +232,13 @@ export default async function ActivityPage({ params }: Params) {
               </div>
             )}
 
-            {/*  STATIC WHAT TO BRING */}
             {activity.whatToBring && (
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">What to Bring</h2>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {activity.whatToBring.map((item, index) => (
                     <li key={index} className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">&bull;</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -203,7 +246,6 @@ export default async function ActivityPage({ params }: Params) {
               </div>
             )}
 
-            {/*  STATIC MAP */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Location</h2>
               <div className="aspect-video w-full overflow-hidden rounded-xl border border-gray-100 dark:border-gray-800">
@@ -221,9 +263,7 @@ export default async function ActivityPage({ params }: Params) {
             </div>
           </div>
 
-          {/*  STATIC SIDEBAR */}
           <div className="space-y-6">
-            {/* Quick Info */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
               <h3 className="text-xl font-bold">Quick Information</h3>
               <ul className="space-y-3">
@@ -277,20 +317,18 @@ export default async function ActivityPage({ params }: Params) {
               </ul>
             </div>
 
-            {/* Tips */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
               <h3 className="text-xl font-bold">Tips for Participants</h3>
               <ul className="space-y-2">
                 {activity.tips.map((tip, index) => (
                   <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">&bull;</span>
                     <span>{tip}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Booking Info */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
               <h3 className="text-xl font-bold">Booking Information</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm">
@@ -306,10 +344,11 @@ export default async function ActivityPage({ params }: Params) {
                   <span className="text-gray-600 dark:text-gray-400">exploretirthanvalley@gmail.com</span>
                 </li>
               </ul>
-              <Button className="w-full mt-2 bg-emerald-600 hover:bg-emerald-700">Inquire Now</Button>
+              <Button asChild className="w-full mt-2 bg-emerald-600 hover:bg-emerald-700">
+                <a href="https://wa.me/917807818119?text=Hi%2C%20I%20want%20to%20inquire%20about%20activities%20in%20Tirthan%20Valley" target="_blank" rel="noopener noreferrer">Inquire Now</a>
+              </Button>
             </div>
 
-            {/* Related Activities */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
               <h3 className="text-xl font-bold">Similar Activities</h3>
               <ul className="space-y-3">
@@ -322,7 +361,7 @@ export default async function ActivityPage({ params }: Params) {
                         <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg">
                           <Image
                             src={related.heroimage || "/placeholder.svg"}
-                            alt={related.title}
+                            alt={`${related.title} activity in Tirthan Valley`}
                             fill
                             className="object-cover transition-transform duration-300 group-hover:scale-110"
                           />
@@ -341,36 +380,35 @@ export default async function ActivityPage({ params }: Params) {
           </div>
         </div>
 
-        {/*  STATIC RELATED ACTIVITIES */}
         <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
           <h2 className="text-2xl font-bold mb-6">You May Also Like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {activities
               .filter((related) => related.slug !== slug)
               .slice(0, 4)
-              .map((activity, index) => (
+              .map((relActivity, index) => (
                 <Link
                   key={index}
-                  href={`/explore/activities/${activity.slug}`}
+                  href={`/explore/activities/${relActivity.slug}`}
                   className="group block bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition-shadow"
                 >
                   <div className="relative h-48 w-full overflow-hidden">
                     <Image
-                      src={activity.heroimage || "/placeholder.svg"}
-                      alt={activity.title}
+                      src={relActivity.heroimage || "/placeholder.svg"}
+                      alt={`${relActivity.title} activity in Tirthan Valley`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute top-2 right-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full">
-                      {activity.category}
+                      {relActivity.category}
                     </div>
                   </div>
                   <div className="p-4">
                     <h3 className="font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                      {activity.title}
+                      {relActivity.title}
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                      {activity.shortDescription}
+                      {relActivity.shortDescription}
                     </p>
                   </div>
                 </Link>
@@ -381,5 +419,3 @@ export default async function ActivityPage({ params }: Params) {
     </div>
   )
 }
-
-//  SERVER-SIDE DATA FETCHING FUNCTION

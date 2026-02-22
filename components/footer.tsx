@@ -1,8 +1,6 @@
 import Link from "next/link";
 import {
-  Facebook,
   Instagram,
-  Twitter,
   Mail,
   MapPin,
   Phone,
@@ -24,20 +22,6 @@ export function Footer() {
               Himalayas.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
-                <span className="sr-only">Facebook</span>
-              </a>
-              <a
-                href="#"
-                className="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </a>
               <a
                 href="https://www.instagram.com/thetirthanvalley/"
                 rel="noopener noreferrer"

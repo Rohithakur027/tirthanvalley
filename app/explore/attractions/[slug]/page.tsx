@@ -6,40 +6,54 @@ import Link from "next/link"
 import { attractions } from "@/data/attractiondata"
 import { relatedAttractions } from "@/data/attractiondata"
 import ImageGallery from "./imageGallery"
+import Breadcrumb from "@/components/Breadcrumb"
 
+const metaDescriptions: Record<string, string> = {
+  "great-himalayan-national-park":
+    "Great Himalayan National Park (GHNP) — UNESCO World Heritage Site near Tirthan Valley. Trek routes, entry fees, permits, wildlife, best time to visit & travel tips.",
+  "jalori-pass":
+    "Jalori Pass at 3,120m — one of the lowest Himalayan passes near Tirthan Valley. How to reach, trekking routes to Serolsar Lake & Raghupur Fort, best season to visit.",
+  "serolsar-lake":
+    "Serolsar Lake — serene high-altitude lake near Jalori Pass in Tirthan Valley. Easy 5km trek, Budhi Nagin temple, photography spots & complete visitor guide.",
+  "tirthan-river":
+    "Tirthan River — crystal-clear river flowing through Tirthan Valley, famous for trout fishing, riverside camping, and scenic beauty. Activities & best spots guide.",
+  "chehni-kothi":
+    "Chehni Kothi — ancient 1500-year-old tower near Tirthan Valley. Architecture, history, trek route, and why this Himachali heritage site is a must-visit.",
+  "raghupur-fort":
+    "Raghupur Fort — ancient hilltop ruins at 3,300m near Jalori Pass with 360-degree Himalayan panorama. Easy trek route, history, best season to visit & photography guide.",
+  "jibhi":
+    "Jibhi — charming Himalayan hamlet near Tirthan Valley with ancient temples, waterfall treks, cafes & wooden architecture. How to reach, things to do & stay guide.",
+  "sharchi-village":
+    "Sharchi Village — traditional Himachali settlement near Tirthan Valley with Kath-Kuni architecture, terraced farms & authentic mountain village life. Visitor guide.",
+  "shairopa":
+    "Sai Ropa Nature Learning Centre — GHNP ecological museum near Tirthan Valley with wildlife exhibits, nature trails & park permit office. Timings, entry & guide.",
+}
 
-
-
-// ✅ SERVER COMPONENT FUNCTIONS - These run at build time or request time
 export async function generateStaticParams() {
-  // Fixed: Added return statement and proper mapping
   return attractions.map((attraction) => ({
     slug: attraction.slug,
   }))
 }
 
 type Params = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
-// ✅ SEO METADATA GENERATION - Runs on server for each page
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { slug } = params
+  const { slug } = await params
   const attraction = attractions.find((a) => a.slug === slug)
 
   if (!attraction) {
     return {
       title: "Not Found | Tirthan Valley",
       description: "This attraction doesn't exist.",
-      robots: {
-        index: false,
-        follow: false,
-      },
+      robots: { index: false, follow: false },
     }
   }
 
-  const title = `${attraction.title} - Tirthan Valley`
+  const title = `${attraction.title} | Tirthan Valley`
   const description =
+    metaDescriptions[slug] ||
     attraction.description?.[0]?.slice(0, 160) ||
     `Discover ${attraction.title} in Tirthan Valley — a hidden gem of Himachal.`
   const imageUrl = attraction.heroimage || "/default-og-image.jpg"
@@ -59,39 +73,36 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: imageUrl,
+          url: `https://thetirthanvalley.in${imageUrl}`,
           width: 1200,
           height: 630,
           alt: `${attraction.title} in Tirthan Valley`,
         },
       ],
+      locale: "en_IN",
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [imageUrl],
+      images: [`https://thetirthanvalley.in${imageUrl}`],
     },
   }
 }
 
 function getAttractionBySlug(slug: string) {
-  
   return attractions.find((attraction) => attraction.slug === slug)
 }
 
-// MAIN SERVER COMPONENT - Handles static content and data fetching
-
-export default function AttractionPage({ params }: Params) {
-  const { slug } = params
+export default async function AttractionPage({ params }: Params) {
+  const { slug } = await params
   const attraction = getAttractionBySlug(slug)
 
-  //  Handle not found case on server
   if (!attraction) {
     return (
       <div className="container py-20 text-center">
         <h1 className="text-2xl font-bold mb-4">Attraction not found</h1>
-        <p className="mb-8 text-gray-600 dark:text-gray-400">The attraction you're looking for doesn't exist.</p>
+        <p className="mb-8 text-gray-600 dark:text-gray-400">The attraction you&apos;re looking for doesn&apos;t exist.</p>
         <Button asChild>
           <Link href="/explore/attractions">View all attractions</Link>
         </Button>
@@ -99,10 +110,43 @@ export default function AttractionPage({ params }: Params) {
     )
   }
 
+  const attractionSchema = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: attraction.title,
+    description: attraction.description?.[0] || "",
+    image: `https://thetirthanvalley.in${attraction.heroimage}`,
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "Himachal Pradesh",
+      addressCountry: "IN",
+    },
+    geo: attraction.latitude
+      ? {
+          "@type": "GeoCoordinates",
+          latitude: attraction.latitude,
+          longitude: attraction.longitude,
+        }
+      : undefined,
+    isAccessibleForFree: attraction.entryFee === "No entry fee",
+    publicAccess: true,
+  }
+
   return (
     <div className="bg-white dark:bg-gray-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(attractionSchema) }}
+      />
       <div className="container py-12 md:py-24">
-        {/* ✅ STATIC NAVIGATION - Rendered on server */}
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Attractions", href: "/explore/attractions" },
+            { label: attraction.title },
+          ]}
+        />
+
         <Button asChild variant="ghost" className="mb-8 hover:bg-gray-100 dark:hover:bg-gray-800">
           <Link href="/explore/attractions" className="flex items-center gap-2">
             <ArrowLeft className="h-4 w-4" />
@@ -111,9 +155,7 @@ export default function AttractionPage({ params }: Params) {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/*  MAIN CONTENT - All static, rendered on server */}
           <div className="lg:col-span-2 space-y-8">
-            {/*  STATIC HEADER */}
             <div>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">{attraction.title}</h1>
               <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-6">
@@ -124,10 +166,8 @@ export default function AttractionPage({ params }: Params) {
               </div>
             </div>
 
-            {/*  CLIENT COMPONENT - Only interactive part */}
             <ImageGallery images={attraction.images} title={attraction.title} />
 
-            {/* STATIC DESCRIPTION */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">About {attraction.title}</h2>
               <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -139,7 +179,6 @@ export default function AttractionPage({ params }: Params) {
               </div>
             </div>
 
-            {/* STATIC HIGHLIGHTS */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Highlights</h2>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -160,7 +199,6 @@ export default function AttractionPage({ params }: Params) {
               </ul>
             </div>
 
-            {/* STATIC ACTIVITIES */}
             {attraction.activities && attraction.activities.length > 0 && (
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Activities</h2>
@@ -177,7 +215,6 @@ export default function AttractionPage({ params }: Params) {
               </div>
             )}
 
-            {/*  STATIC FLORA AND FAUNA */}
             {attraction.floraFauna && (
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">Flora and Fauna</h2>
@@ -202,7 +239,6 @@ export default function AttractionPage({ params }: Params) {
               </div>
             )}
 
-            {/*  STATIC MAP */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Location</h2>
               <div className="aspect-video w-full overflow-hidden rounded-xl border border-gray-100 dark:border-gray-800">
@@ -220,9 +256,7 @@ export default function AttractionPage({ params }: Params) {
             </div>
           </div>
 
-          {/*  STATIC SIDEBAR */}
           <div className="space-y-6">
-            {/* Quick Info */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
               <h3 className="text-xl font-bold">Quick Information</h3>
               <ul className="space-y-3">
@@ -250,20 +284,18 @@ export default function AttractionPage({ params }: Params) {
               </ul>
             </div>
 
-            {/* Tips */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
               <h3 className="text-xl font-bold">Tips for Visitors</h3>
               <ul className="space-y-2">
                 {attraction.tips.map((tip, index) => (
                   <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">&bull;</span>
                     <span>{tip}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Official Website */}
             {attraction.officialWebsite && (
               <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
                 <h3 className="text-xl font-bold">Official Information</h3>
@@ -279,7 +311,6 @@ export default function AttractionPage({ params }: Params) {
               </div>
             )}
 
-            {/* Nearby Attractions */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-4">
               <h3 className="text-xl font-bold">Nearby Attractions</h3>
               <ul className="space-y-3">
@@ -288,8 +319,8 @@ export default function AttractionPage({ params }: Params) {
                     <Link href={`/explore/attractions/${nearby.slug}`} className="flex items-start gap-3 group">
                       <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg">
                         <Image
-                          src={nearby.image || "/placeholder.svg"}
-                          alt={nearby.title}
+                          src={nearby.image || (nearby as Record<string, string>).heroimage || "/placeholder.svg"}
+                          alt={`${nearby.title} near ${attraction.title} in Tirthan Valley`}
                           fill
                           className="object-cover transition-transform duration-300 group-hover:scale-110"
                         />
@@ -308,33 +339,32 @@ export default function AttractionPage({ params }: Params) {
           </div>
         </div>
 
-        {/*  STATIC RELATED ATTRACTIONS */}
         <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
           <h2 className="text-2xl font-bold mb-6">You May Also Like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {relatedAttractions
               .filter((related) => related.slug !== slug)
               .slice(0, 4)
-              .map((attraction, index) => (
+              .map((relAttraction, index) => (
                 <Link
                   key={index}
-                  href={`/explore/attractions/${attraction.slug}`}
+                  href={`/explore/attractions/${relAttraction.slug}`}
                   className="group block bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition-shadow"
                 >
                   <div className="relative h-48 w-full overflow-hidden">
                     <Image
-                      src={attraction.image || "/placeholder.svg"}
-                      alt={attraction.title}
+                      src={relAttraction.image || "/placeholder.svg"}
+                      alt={`${relAttraction.title} attraction in Tirthan Valley`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-4">
                     <h3 className="font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                      {attraction.title}
+                      {relAttraction.title}
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                      {attraction.shortDescription}
+                      {relAttraction.shortDescription}
                     </p>
                   </div>
                 </Link>
@@ -345,6 +375,3 @@ export default function AttractionPage({ params }: Params) {
     </div>
   )
 }
-
-
-
