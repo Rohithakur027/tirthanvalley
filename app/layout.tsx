@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { GoogleAnalytics } from "@next/third-parties/google"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -65,6 +66,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <GoogleAnalytics gaId="G-HSBP2F8WP9" />
       <body className={cn("min-h-screen font-sans antialiased w-full overflow-x-hidden", fontSans.variable)}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <div className="relative flex min-h-screen flex-col">
